@@ -5,7 +5,7 @@ using System.Web.Http.Dependencies;
 using Castle.MicroKernel.Lifestyle;
 using Castle.Windsor;
 
-namespace UserAccessSystem.Services {
+namespace UserAccessSystem.Services.Windsor {
     public class WindsorDependencyScope : IDependencyScope {
         private readonly IWindsorContainer container;
         private readonly IDisposable scope;

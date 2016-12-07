@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
-using UserAccessSystem.DatabaseAccess.Models;
+using UserAccessSystem.Models.Models;
 using UserAccessSystem.Services.Interfaces;
 
 namespace UserAccessSystem.Controllers {
@@ -12,8 +12,8 @@ namespace UserAccessSystem.Controllers {
         }
 
         // GET api/users
-        public IEnumerable<User> Get() {
-            return userService.GetAllUsers();
+        public IEnumerable<UserApiModel> Get() {
+            return userService.GetWebApiUserModels();
         }
     }
 }

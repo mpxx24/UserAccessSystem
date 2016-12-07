@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web.Http.Dependencies;
 using Castle.Windsor;
 
-namespace UserAccessSystem.Services {
+namespace UserAccessSystem.Services.Windsor {
     public class WindsorDependencyResolver : IDependencyResolver {
         private readonly IWindsorContainer container;
 

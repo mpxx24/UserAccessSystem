@@ -57,6 +57,18 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Scripts\jquery-1.11.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\jquery.bootgrid.css" />
+    <Content Include="Content\jquery.bootgrid.min.css" />
+    <Content Include="Scripts\jquery-1.11.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.11.1.js" />
+    <Content Include="Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\jquery.bootgrid.fa.js" />
+    <Content Include="Scripts\jquery.bootgrid.fa.min.js" />
+    <Content Include="Scripts\jquery.bootgrid.js" />
+    <Content Include="Scripts\jquery.bootgrid.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
