@@ -162,7 +162,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Converters\UserModelConverter.cs" />
+    <Compile Include="Models\Models\CustomControlsModels\UserGridModel.cs" />
     <Compile Include="Models\Models\UserApiModel.cs" />
+    <Compile Include="Models\Models\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
@@ -171,6 +173,7 @@
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\Windsor\WindsorDependencyResolver.cs" />
     <Compile Include="Services\Windsor\WindsorDependencyScope.cs" />
+    <Compile Include="Services\Windsor\WindsorMvcControllerFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

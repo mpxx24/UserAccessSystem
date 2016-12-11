@@ -39,7 +39,18 @@ namespace UserAccessSystem.Services {
         /// </returns>
         public IEnumerable<UserApiModel> GetWebApiUserModels() {
             var users = GetAllUsers();
-            return UserModelConverter.ConvertUsersToApiModels(users.ToList());
+            return UserModelConverter.ConvertUsersToApiModels(users);
+        }
+
+        /// <summary>
+        ///     Gets the user view models.
+        /// </summary>
+        /// <returns>
+        ///     list of all userts as use view models
+        /// </returns>
+        public IEnumerable<UserViewModel> GetUserViewModels() {
+            var users = GetAllUsers();
+            return UserModelConverter.ConvertUsersToViewModels(users);
         }
     }
 }

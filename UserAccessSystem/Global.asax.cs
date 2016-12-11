@@ -37,6 +37,10 @@ namespace UserAccessSystem {
             //for Web API
             var dependencyResolver = new WindsorDependencyResolver(container);
             configuration.DependencyResolver = dependencyResolver;
+
+            //for MVC
+            var castleControllerFactory = new WindsorMvcControllerFactory(container);
+            ControllerBuilder.Current.SetControllerFactory(castleControllerFactory);
         }
     }
 }

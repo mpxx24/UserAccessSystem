@@ -1,5 +1,15 @@
-﻿namespace UserAccessSystem.Models.Models {
-    public class UserApiModel {
+﻿using System;
+
+namespace UserAccessSystem.Models.Models {
+    public class UserViewModel {
+        /// <summary>
+        ///     Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        ///     The identifier.
+        /// </value>
+        public Guid Id { get; set; }
+
         /// <summary>
         ///     Gets or sets the first name.
         /// </summary>
@@ -22,7 +32,7 @@
         /// <value>
         ///     The last subscription.
         /// </value>
-        public string LastSubscription { get; set; }
+        public DateTime LastSubscription { get; set; }
 
         /// <summary>
         ///     Gets or sets a value indicating whether this instance is active account.

@@ -4,7 +4,7 @@ using UserAccessSystem.Models.Models;
 
 namespace UserAccessSystem.Services.Interfaces {
     /// <summary>
-    ///     Interface for Service for all operations with <see cref="User"/> class
+    ///     Interface for Service for all operations with <see cref="User" /> class
     /// </summary>
     public interface IUserService {
         /// <summary>
@@ -14,9 +14,19 @@ namespace UserAccessSystem.Services.Interfaces {
         IEnumerable<User> GetAllUsers();
 
         /// <summary>
-        /// Gets the web API user model.
+        ///     Gets the web API user model.
         /// </summary>
-        /// <returns>list of all users as user api models</returns>
+        /// <returns>
+        ///     list of all users as user api models
+        /// </returns>
         IEnumerable<UserApiModel> GetWebApiUserModels();
+
+        /// <summary>
+        ///     Gets the user view models.
+        /// </summary>
+        /// <returns>
+        ///     list of all users as user view models
+        /// </returns>
+        IEnumerable<UserViewModel> GetUserViewModels();
     }
 }

@@ -1,35 +1,42 @@
-﻿@model dynamic
-
-@{
+﻿@{
     ViewBag.Title = "User Access System";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
 
-    <table id="grid-basic" class="table table-condensed table-hover table-striped">
-        <thead>
-            <tr>
-                <th data-column-id="FirstName">First name</th>
-                <th data-column-id="LastName">Last name</th>
-                <th data-column-id="LastSubscription">Last subscription</th>
-            </tr>
-        </thead>
-    </table>
+<table id="grid-basic" class="table table-condensed table-hover table-striped">
+    <thead>
+    <tr>
+        <th data-column-id="Id" data-identifier="true">Id</th>
+        <th data-column-id="FirstName">First name</th>
+        <th data-column-id="LastName">Last name</th>
+        <th data-column-id="LastSubscription">Last subscription</th>
+        <th data-column-id="IsActiveAccount">Active</th>
+        <th data-column-id="IsSuperUser">Administrator</th>
+    </tr>
+    </thead>
+</table>
 
-    <script type="text/javascript">
-        $("#grid-basic").bootgrid({
-            ajax: true,
-            post: function() {
-                return {
-                    id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
-                };
-            },
-            url: "Home/GetAllUsers",
-            success: function(data) {
-                console.log(data);
-                console.log(JSON.parse(data));
-                console.log(JSON.stringify(data));
-            }
-        });
-    </script>
+<div style="display: flex">
+    <button id="btnAddUser" type="button" class="btn btn-primary" style="float: right">Add user</button>
+</div>
+
+<script type="text/javascript">
+    $("#grid-basic").bootgrid({
+        ajax: true,
+        post: function () {
+            return {
+                id: "b0df282a-0d67-40e5-8558-c9e93b7befed"
+            };
+        },
+        url: "Home/GetAllUsers",
+        templates:
+        {
+            search: ""
+        },
+        success: function (data) {
+            console.log(data);
+        }
+    });
+</script>
