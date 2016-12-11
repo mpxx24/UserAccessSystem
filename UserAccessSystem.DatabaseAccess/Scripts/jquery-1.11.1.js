@@ -4475,7 +4475,7 @@ jQuery.event = {
 			return;
 		}
 
-		// focus/blur morphs to focusin/out; ensure we're not firing them right now
+		// focus/blur morphs to focusin/out; ensure we're not firing them right Now
 		if ( rfocusMorph.test( type + jQuery.event.triggered ) ) {
 			return;
 		}
@@ -4561,7 +4561,7 @@ jQuery.event = {
 		}
 		event.type = type;
 
-		// If nobody prevented the default action, do it now
+		// If nobody prevented the default action, do it Now
 		if ( !onlyHandlers && !event.isDefaultPrevented() ) {
 
 			if ( (!special._default || special._default.apply( eventPath.pop(), data ) === false) &&
@@ -9069,7 +9069,7 @@ jQuery.extend({
 			return jqXHR;
 		}
 
-		// We can fire global events as of now if asked to
+		// We can fire global events as of Now if asked to
 		fireGlobals = s.global;
 
 		// Watch for a new set of requests
@@ -9195,7 +9195,7 @@ jQuery.extend({
 				return;
 			}
 
-			// State is "done" now
+			// State is "done" Now
 			state = 2;
 
 			// Clear timeout if it exists

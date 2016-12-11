@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Web.Mvc;
-using Newtonsoft.Json.Serialization;
-using UserAccessSystem.DatabaseAccess.Models;
 using Newtonsoft.Json;
 using UserAccessSystem.Models.Converters;
-using UserAccessSystem.Models.Models;
+using UserAccessSystem.Models.Models.CustomControlsModels;
 using UserAccessSystem.Services.Interfaces;
 
 namespace UserAccessSystem.Controllers {
@@ -20,6 +16,16 @@ namespace UserAccessSystem.Controllers {
         // GET: Home
         public ActionResult Index() {
             return View();
+        }
+
+        public ActionResult AddUserPopup() {
+            var trueFalseDropdownList = new List<SelectListItem>
+            {
+                new SelectListItem {Value = "1", Text = "false"},
+                new SelectListItem {Value = "2", Text = "true"}
+            };
+
+            return View(trueFalseDropdownList);
         }
 
         public string GetAllUsers() {

@@ -7,20 +7,22 @@
 
 <table id="grid-basic" class="table table-condensed table-hover table-striped">
     <thead>
-    <tr>
-        <th data-column-id="Id" data-identifier="true">Id</th>
-        <th data-column-id="FirstName">First name</th>
-        <th data-column-id="LastName">Last name</th>
-        <th data-column-id="LastSubscription">Last subscription</th>
-        <th data-column-id="IsActiveAccount">Active</th>
-        <th data-column-id="IsSuperUser">Administrator</th>
-    </tr>
+        <tr>
+            <th data-column-id="Id" data-identifier="true">Id</th>
+            <th data-column-id="FirstName">First name</th>
+            <th data-column-id="LastName">Last name</th>
+            <th data-column-id="LastSubscription">Last subscription</th>
+            <th data-column-id="IsActiveAccount">Active</th>
+            <th data-column-id="IsSuperUser">Administrator</th>
+        </tr>
     </thead>
 </table>
 
 <div style="display: flex">
     <button id="btnAddUser" type="button" class="btn btn-primary" style="float: right">Add user</button>
 </div>
+
+<div id="popupAddUser"></div>
 
 <script type="text/javascript">
     $("#grid-basic").bootgrid({
@@ -31,12 +33,25 @@
             };
         },
         url: "Home/GetAllUsers",
-        templates:
-        {
+        templates: {
             search: ""
-        },
-        success: function (data) {
-            console.log(data);
         }
+    });
+
+    var config = {
+        autoOpen: false,
+        position: { my: "top+150px", at: "top", of:window},
+        resizable: false,
+        title: 'Add User',
+        modal: true,
+        open: function () {
+            $(this).load('@Url.Action("AddUserPopup", "Home")');
+        }
+    };
+
+    $("#popupAddUser").dialog(config);
+
+    $("#btnAddUser").on("click", function () {
+        $("#popupAddUser").dialog(config).dialog("open");
     });
 </script>

@@ -704,7 +704,7 @@
             return jqXHR;
         }
 
-        // We can fire global events as of now if asked to
+        // We can fire global events as of Now if asked to
         fireGlobals = s.global;
 
         // Watch for a new set of requests
@@ -830,7 +830,7 @@
                 return;
             }
 
-            // State is "done" now
+            // State is "done" Now
             state = 2;
 
             // Clear timeout if it exists
@@ -3664,7 +3664,7 @@
     };
     jQuery.prototype.delegate = function (selector, types, data, fn) {
         /// <summary>
-        ///     Attach a handler to one or more events for all elements that match the selector, now or in the future, based on a specific set of root elements.
+        ///     Attach a handler to one or more events for all elements that match the selector, Now or in the future, based on a specific set of root elements.
         ///     &#10;1 - delegate(selector, eventType, handler(eventObject)) 
         ///     &#10;2 - delegate(selector, eventType, eventData, handler(eventObject)) 
         ///     &#10;3 - delegate(selector, events)
