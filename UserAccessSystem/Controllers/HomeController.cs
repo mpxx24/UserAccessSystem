@@ -19,13 +19,7 @@ namespace UserAccessSystem.Controllers {
         }
 
         public ActionResult AddUserPopup() {
-            var trueFalseDropdownList = new List<SelectListItem>
-            {
-                new SelectListItem {Value = "1", Text = "false"},
-                new SelectListItem {Value = "2", Text = "true"}
-            };
-
-            return View(trueFalseDropdownList);
+            return View();
         }
 
         public string GetAllUsers() {

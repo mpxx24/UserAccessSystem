@@ -10,8 +10,7 @@ namespace UserAccessSystem.Controllers {
         public UserController(IUserService userService) {
             this.userService = userService;
         }
-
-        // GET: User
+        
         public void SaveUser(string p) {
             var userData = JsonConvert.DeserializeObject<User>(p);
             var user = new User
