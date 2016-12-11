@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UserAccessSystem.DatabaseAccess.Models;
 using UserAccessSystem.Models.Converters;
@@ -51,6 +52,14 @@ namespace UserAccessSystem.Services {
         public IEnumerable<UserViewModel> GetUserViewModels() {
             var users = GetAllUsers();
             return UserModelConverter.ConvertUsersToViewModels(users);
+        }
+        /// <summary>
+        /// Saves the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns>Id of newly added user</returns>
+        public Guid SaveUser(User user) {
+            return repository.Add(user).Id;
         }
     }
 }

@@ -6,13 +6,16 @@
 
 <div>
     @Html.Label("lbAddUser_Name", "Name")
-    @Html.TextBox("tbAddUser_Name", "", new { @class = "form-control", style="width: 100%;" })
+    @Html.TextBox("tbAddUser_Name", "", new { @class = "form-control", style = "width: 100%;" })
 
     @Html.Label("lbAddUser_LastName", "Last name")
     @Html.TextBox("tbAddUser_LastName", "", new { @class = "form-control" })
 
-    @Html.Label("lbAddUser_IsAdministrator", "Administrator")
-    @Html.DropDownList("ddAddUser_IsAdministrator", Model, new { @class = "form-control" })
+    @*@Html.Label("lbAddUser_IsAdministrator", "Administrator")
+    @Html.DropDownList("ddAddUser_IsAdministrator", Model, new { @class = "form-control" })*@
+
+    @Html.Label("lbAddUser_DateOfBirth", "Date of birth")
+    @Html.Editor("dpAddUser_DateOfBirth")
 
     @Html.Label("lbAddUser_LastSubscriptionDate", "Last subscription")
     @Html.Editor("dpAddUser_LastSubscription")
@@ -25,5 +28,28 @@
         $("#dpAddUser_LastSubscription").datepicker({
             dateFormat: 'dd/mm/yy'
         }).datepicker("setDate", new Date);
+    });
+
+    $("#btnAddUser_Add").click(function () {
+        var input = {
+            FirstName: $("#tbAddUser_Name").val(),
+            LastName: $("#tbAddUser_LastName").val(),
+            //IsSuperUser: $("#ddAddUser_IsAdministrator").val(),
+            DateOfBirth: $("#dpAddUser_DateOfBirth").val(),
+            LastSubscription: $("#dpAddUser_LastSubscription").val()
+        }
+
+        console.log(input);
+
+        $.ajax({
+            url: '@Url.Action("SaveUser", "User")',
+            type: 'POST',
+            dataType: 'json',
+            conventType: "application/json; charset=utf-8",
+            data: { p: JSON.stringify(input) },
+            success: function (result) {
+                console.log(result);
+            }
+        });
     });
 </script>

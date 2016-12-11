@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UserAccessSystem.DatabaseAccess.Models;
 using UserAccessSystem.Models.Models;
 
@@ -28,5 +29,12 @@ namespace UserAccessSystem.Services.Interfaces {
         ///     list of all users as user view models
         /// </returns>
         IEnumerable<UserViewModel> GetUserViewModels();
+
+        /// <summary>
+        /// Saves the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        Guid SaveUser(User user);
     }
 }
