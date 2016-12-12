@@ -169,6 +169,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Services\Exceptions\FailedToAddObjectToDatabaseException.cs" />
+    <Compile Include="Services\Exceptions\GeneralServiceMethodException.cs" />
     <Compile Include="Services\Installers\WindsorInstaller.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -217,6 +219,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\AddUserPopup.cshtml" />
+    <Content Include="Views\Home\ApiTests.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

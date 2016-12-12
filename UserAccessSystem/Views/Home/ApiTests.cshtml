@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "ApiTests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Web API tests</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6"">
+            <a href="#">Get all users</a>
+        </div>
+        <div class="col-md-6">
+            @Html.Label("lbApiTests_ApiResponse", "Web API response")
+            @Html.TextArea("taApiTests_ApiResponse", new {@class = "form-control", style="width: 50%; height: 80%" })
+        </div>
+    </div>
+</div>

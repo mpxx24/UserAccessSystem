@@ -2,20 +2,26 @@
     ViewBag.Title = "Add user";
 }
 
-<div>
-    @Html.Label("lbAddUser_Name", "Name")
-    @Html.TextBox("tbAddUser_Name", "", new { @class = "form-control", style = "width: 100%;" })
-
-    @Html.Label("lbAddUser_LastName", "Last name")
-    @Html.TextBox("tbAddUser_LastName", "", new { @class = "form-control" })
-
-    @Html.Label("lbAddUser_DateOfBirth", "Date of birth")
-    @Html.Editor("dpAddUser_DateOfBirth")
-
-    @Html.Label("lbAddUser_LastSubscriptionDate", "Last subscription")
-    @Html.Editor("dpAddUser_LastSubscription")
-
-    <button id="btnAddUser_Add" type="button" class="btn btn-default" style="float: right">Add</button>
+<div class="addUserFields">
+    <div>
+        @Html.Label("lbAddUser_Name", "Name")
+        @Html.TextBox("tbAddUser_Name", "", new {@class = "form-control", style = "width: 100%;"})
+    </div>
+    <div>
+        @Html.Label("lbAddUser_LastName", "Last name")
+        @Html.TextBox("tbAddUser_LastName", "", new {@class = "form-control"})
+    </div>
+    <div>
+        @Html.Label("lbAddUser_DateOfBirth", "Date of birth")
+        @Html.Editor("dpAddUser_DateOfBirth")
+    </div>
+    <div>
+        @Html.Label("lbAddUser_LastSubscriptionDate", "Last subscription")
+        @Html.Editor("dpAddUser_LastSubscription")
+    </div>
+    <div>
+        <button id="btnAddUser_Add" type="button" class="btn btn-primary" style="float: right">Add</button>
+    </div>
 </div>
 
 <script type="text/javascript">
@@ -46,6 +52,10 @@
             complete: function () {
                 $("#popupAddUser").dialog("close");
                 $("#grid-basic").bootgrid("reload");
+            },
+            error: function (error) {
+                alert("Failed to add user!");
+                console.log(error);
             }
         });
     });

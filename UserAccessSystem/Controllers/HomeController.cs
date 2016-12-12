@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using UserAccessSystem.Models.Converters;
-using UserAccessSystem.Models.Models.CustomControlsModels;
 using UserAccessSystem.Services.Interfaces;
 
 namespace UserAccessSystem.Controllers {
@@ -13,7 +11,6 @@ namespace UserAccessSystem.Controllers {
             this.userService = userService;
         }
 
-        // GET: Home
         public ActionResult Index() {
             return View();
         }
@@ -22,6 +19,16 @@ namespace UserAccessSystem.Controllers {
             return View();
         }
 
+        public ActionResult ApiTests() {
+            return View();
+        }
+
+        /// <summary>
+        ///     Gets all users.
+        /// </summary>
+        /// <returns>
+        ///     returns JSON string of all users for grid usage>
+        /// </returns>
         public string GetAllUsers() {
             var users = userService.GetUserViewModels();
             var usersSorted = users.OrderByDescending(x => x.IsActiveAccount).ThenBy(x => x.LastName).ThenBy(x => x.FirstName);

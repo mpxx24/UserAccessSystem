@@ -5,6 +5,7 @@ using UserAccessSystem.DatabaseAccess.Models;
 using UserAccessSystem.Models.Converters;
 using UserAccessSystem.Models.Models;
 using UserAccessSystem.Repository;
+using UserAccessSystem.Services.Exceptions;
 using UserAccessSystem.Services.Interfaces;
 
 namespace UserAccessSystem.Services {
@@ -49,17 +50,55 @@ namespace UserAccessSystem.Services {
         /// <returns>
         ///     list of all userts as use view models
         /// </returns>
+        /// <exception cref="GeneralServiceMethodException">$Failed to retrieve user view models! - {nameof(GetUserViewModels)}</exception>
         public IEnumerable<UserViewModel> GetUserViewModels() {
             var users = GetAllUsers();
-            return UserModelConverter.ConvertUsersToViewModels(users);
+            try {
+                return UserModelConverter.ConvertUsersToViewModels(users);
+            }
+            catch (Exception ex) {
+                throw new GeneralServiceMethodException($"Failed to retrieve user view models! - {nameof(GetUserViewModels)}", ex.InnerException);
+            }
         }
+
         /// <summary>
-        /// Saves the user.
+        ///     Saves the user.
         /// </summary>
         /// <param name="user">The user.</param>
-        /// <returns>Id of newly added user</returns>
+        /// <returns>
+        ///     Id of newly added user
+        /// </returns>
+        /// <exception cref="FailedToAddObjectToDatabaseException">User with specified ID already exists!</exception>
+        /// <exception cref="System.ArgumentNullException">
+        /// </exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">
+        /// </exception>
+        /// <exception cref="GeneralServiceMethodException">$Failed to add user! - {nameof(SaveUser)}</exception>
         public Guid SaveUser(User user) {
-            return repository.Add(user).Id;
+            var allUsers = repository.GetAll<User>();
+
+            if (allUsers.Any(x => x.Id == user.Id)) {
+                throw new FailedToAddObjectToDatabaseException("User with specified ID already exists!");
+            }
+            if (string.IsNullOrEmpty(user.FirstName)) {
+                throw new ArgumentNullException(nameof(user.FirstName));
+            }
+            if (string.IsNullOrEmpty(user.LastName)) {
+                throw new ArgumentNullException(nameof(user.LastName));
+            }
+            if (user.DateOfBirth > DateTime.Today) {
+                throw new ArgumentOutOfRangeException(nameof(user.DateOfBirth));
+            }
+            if (user.LastSubscription.Date > DateTime.Today) {
+                throw new ArgumentOutOfRangeException(nameof(user.LastSubscription));
+            }
+
+            try {
+                return repository.Add(user).Id;
+            }
+            catch (Exception ex) {
+                throw new GeneralServiceMethodException($"Failed to add user! - {nameof(SaveUser)}", ex.InnerException);
+            }
         }
     }
 }
