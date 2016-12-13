@@ -31,7 +31,7 @@ namespace UserAccessSystem.Controllers {
         /// </returns>
         public string GetAllUsers() {
             var users = userService.GetUserViewModels();
-            var usersSorted = users.OrderByDescending(x => x.IsActiveAccount).ThenBy(x => x.LastName).ThenBy(x => x.FirstName);
+            var usersSorted = users.OrderBy(x => x.Id);
             return JsonConvert.SerializeObject(UserModelConverter.ConvertUsersListToGridModel(usersSorted));
         }
     }

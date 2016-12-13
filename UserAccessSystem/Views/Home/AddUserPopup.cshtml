@@ -26,13 +26,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#dpAddUser_DateOfBirth").datepicker({
-            dateFormat: 'dd/mm/yy'
-        }).datepicker("setDate", new Date);
-
-        $("#dpAddUser_LastSubscription").datepicker({
-            dateFormat: 'dd/mm/yy'
-        }).datepicker("setDate", new Date);
+        ControlsHelper.CreateDatePicker("dpAddUser_DateOfBirth");
+        ControlsHelper.CreateDatePicker("dpAddUser_LastSubscription");
     });
     
     $("#btnAddUser_Add").click(function () {
