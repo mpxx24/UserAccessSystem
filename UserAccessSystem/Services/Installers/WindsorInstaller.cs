@@ -10,8 +10,8 @@ namespace UserAccessSystem.Services.Installers {
     public class WindsorInstaller : IWindsorInstaller {
         public void Install(IWindsorContainer container, IConfigurationStore store) {
             container.Register(
-                Classes.FromThisAssembly().BasedOn<IHttpController>().LifestylePerWebRequest(),
-                Classes.FromThisAssembly().BasedOn<IController>().LifestylePerWebRequest()
+                Classes.FromThisAssembly().BasedOn<IHttpController>().LifestyleTransient(),
+                Classes.FromThisAssembly().BasedOn<IController>().LifestyleTransient()
                 );
 
             container.Register(
