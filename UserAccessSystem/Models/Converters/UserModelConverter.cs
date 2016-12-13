@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UserAccessSystem.DatabaseAccess.Models;
-using UserAccessSystem.Models.Models;
-using UserAccessSystem.Models.Models.CustomControlsModels;
+using UserAccessSystem.Models.AppModels;
+using UserAccessSystem.Models.AppModels.CustomControlsModels;
 
 namespace UserAccessSystem.Models.Converters {
     /// <summary>
@@ -31,7 +31,9 @@ namespace UserAccessSystem.Models.Converters {
         ///     Converts the users list to grid model.
         /// </summary>
         /// <param name="users">The users.</param>
-        /// <returns><see cref="UsersGridModel"/></returns>
+        /// <returns>
+        ///     <see cref="UsersGridModel" />
+        /// </returns>
         public static UsersGridModel ConvertUsersListToGridModel(IEnumerable<UserViewModel> users) {
             var userViewModels = users.ToList();
             var userGridModel = new UsersGridModel
@@ -45,7 +47,7 @@ namespace UserAccessSystem.Models.Converters {
             return userGridModel;
         }
 
-        private static UserApiModel ConvertUserToApiModel(User user) {
+        public static UserApiModel ConvertUserToApiModel(User user) {
             return new UserApiModel
             {
                 FirstName = user.FirstName,

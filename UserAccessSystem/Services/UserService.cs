@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UserAccessSystem.DatabaseAccess.Models;
+using UserAccessSystem.Models.AppModels;
 using UserAccessSystem.Models.Converters;
-using UserAccessSystem.Models.Models;
 using UserAccessSystem.Repository;
 using UserAccessSystem.Services.Exceptions;
 using UserAccessSystem.Services.Interfaces;
@@ -34,14 +34,13 @@ namespace UserAccessSystem.Services {
         }
 
         /// <summary>
-        ///     Gets the web API user models.
+        ///     Gets the user API model.
         /// </summary>
-        /// <returns>
-        ///     list of all users as user api models
-        /// </returns>
-        public IEnumerable<UserApiModel> GetWebApiUserModels() {
-            var users = GetAllUsers();
-            return UserModelConverter.ConvertUsersToApiModels(users);
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public UserApiModel GetUserApiModel(int id) {
+            var user = repository.GetFirst<User>(x => x.Id == id);
+            return UserModelConverter.ConvertUserToApiModel(user);
         }
 
         /// <summary>
@@ -74,7 +73,7 @@ namespace UserAccessSystem.Services {
         /// <exception cref="System.ArgumentOutOfRangeException">
         /// </exception>
         /// <exception cref="GeneralServiceMethodException">$Failed to add user! - {nameof(SaveUser)}</exception>
-        public Guid SaveUser(User user) {
+        public int SaveUser(User user) {
             var allUsers = repository.GetAll<User>();
 
             if (allUsers.Any(x => x.Id == user.Id)) {
@@ -99,6 +98,17 @@ namespace UserAccessSystem.Services {
             catch (Exception ex) {
                 throw new GeneralServiceMethodException($"Failed to add user! - {nameof(SaveUser)}", ex.InnerException);
             }
+        }
+
+        /// <summary>
+        ///     Gets the web API user models.
+        /// </summary>
+        /// <returns>
+        ///     list of all users as user api models
+        /// </returns>
+        public IEnumerable<UserApiModel> GetWebApiUserModels() {
+            var users = GetAllUsers();
+            return UserModelConverter.ConvertUsersToApiModels(users);
         }
     }
 }

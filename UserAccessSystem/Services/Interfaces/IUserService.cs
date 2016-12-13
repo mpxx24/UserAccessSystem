@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UserAccessSystem.DatabaseAccess.Models;
-using UserAccessSystem.Models.Models;
+using UserAccessSystem.Models.AppModels;
 
 namespace UserAccessSystem.Services.Interfaces {
     /// <summary>
@@ -13,6 +12,13 @@ namespace UserAccessSystem.Services.Interfaces {
         /// </summary>
         /// <returns>list of all users</returns>
         IEnumerable<User> GetAllUsers();
+
+        /// <summary>
+        ///     Gets the user.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        UserApiModel GetUserApiModel(int id);
 
         /// <summary>
         ///     Gets the web API user model.
@@ -31,10 +37,10 @@ namespace UserAccessSystem.Services.Interfaces {
         IEnumerable<UserViewModel> GetUserViewModels();
 
         /// <summary>
-        /// Saves the user.
+        ///     Saves the user.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <returns></returns>
-        Guid SaveUser(User user);
+        int SaveUser(User user);
     }
 }

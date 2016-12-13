@@ -163,9 +163,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Converters\UserModelConverter.cs" />
-    <Compile Include="Models\Models\CustomControlsModels\UserGridModel.cs" />
-    <Compile Include="Models\Models\UserApiModel.cs" />
-    <Compile Include="Models\Models\UserViewModel.cs" />
+    <Compile Include="Models\AppModels\CustomControlsModels\UserGridModel.cs" />
+    <Compile Include="Models\AppModels\UserApiModel.cs" />
+    <Compile Include="Models\AppModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
@@ -193,6 +193,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\CustomScripts\DataFactory.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

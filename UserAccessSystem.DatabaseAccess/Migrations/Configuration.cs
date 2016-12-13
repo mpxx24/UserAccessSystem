@@ -13,7 +13,7 @@ namespace UserAccessSystem.DatabaseAccess.Migrations {
 
             context.Users.AddOrUpdate(new User
             {
-                Id = Guid.NewGuid(),
+                Id = 1,
                 FirstName = "Mariusz",
                 LastName = "Pi¹tkowski",
                 DateOfBirth = new DateTime(1991, 3, 1),
@@ -24,7 +24,7 @@ namespace UserAccessSystem.DatabaseAccess.Migrations {
             });
             context.Users.AddOrUpdate(new User
             {
-                Id = Guid.NewGuid(),
+                Id = 2,
                 FirstName = "Harry",
                 LastName = "Hole",
                 DateOfBirth = new DateTime(1981, 10, 12),
@@ -35,7 +35,7 @@ namespace UserAccessSystem.DatabaseAccess.Migrations {
             });
             context.Users.AddOrUpdate(new User
             {
-                Id = Guid.NewGuid(),
+                Id = 3,
                 FirstName = "Scot",
                 LastName = "Harvath",
                 DateOfBirth = new DateTime(1979, 1, 2),

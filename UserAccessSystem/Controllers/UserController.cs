@@ -25,7 +25,6 @@ namespace UserAccessSystem.Controllers {
         private static User UpdateUserData(User userData) {
             var user = new User
             {
-                Id = Guid.NewGuid(),
                 FirstName = userData.FirstName,
                 LastName = userData.LastName,
                 LastSubscription = userData.LastSubscription,

@@ -3,16 +3,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="~/Scripts/CustomScripts/DataFactory.js"></script>
+
 <h2>Web API tests</h2>
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
-            <a id="aApiTests_GetAllUsers" href="#">Get all users</a>
+        <div class="col-md-3 webApiTestOptions">
+            <div>
+                <a id="aApiTests_GetAllUsers" href="#">Get all users</a>
+            </div>
+            <div>
+                <a id="aApiTests_GetUserWithId" href="#">Get user with ID</a>
+                @Html.TextBox("tbApiTests_UserId", "", new { @class = "form-control", @style = "width:20%; display: inline-block; margin-left: 10px;" })
+            </div>
         </div>
         <div class="col-md-9">
             @Html.Label("lbApiTests_ApiResponse", "Web API response")
-            @*@Html.TextArea("taApiTests_ApiResponse", new {@class = "form-control", style = "", @readonly = true, wrap = "off"})*@
             <div id="ApiTests_ApiResponse"></div>
         </div>
     </div>
@@ -20,20 +27,25 @@
 
 <script type="text/javascript">
     $("#aApiTests_GetAllUsers").click(function () {
-        $.ajax({
-            url: 'http://localhost:55529/api/users',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                var result = JSON.stringify(data);
-                var testDiv = $("#ApiTests_ApiResponse");
-                var textArea = "<textarea> " + result + "</textarea>";
-                testDiv.append(textArea);
-            },
-            error: function(error) {
-                alert("Failed to perform API request");
-                console.log(error);
-            }
-        });
+        var configAllUsers = {
+            Address: "http://localhost:55529/api/users"
+        };
+        DataFactory.GetWebApiResponseInTextArea(configAllUsers);
+    });
+
+    $("#aApiTests_GetUserWithId").click(function () {
+        var userId = $("#tbApiTests_UserId").val();
+
+        if (!userId) {
+            alert("Need to enter the ID of user!");
+        }
+        if (isNaN(userId)) {
+            alert("Value entered must be a number!");
+        } else {
+            var configUserWithId = {
+                Address: "http://localhost:55529/api/users/" + userId
+            };
+            DataFactory.GetWebApiResponseInTextArea(configUserWithId);
+        }
     });
 </script>

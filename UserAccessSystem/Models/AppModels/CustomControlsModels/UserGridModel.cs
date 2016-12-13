@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace UserAccessSystem.Models.Models.CustomControlsModels {
+namespace UserAccessSystem.Models.AppModels.CustomControlsModels {
     [Serializable]
     public class UsersGridModel {
         /// <summary>
