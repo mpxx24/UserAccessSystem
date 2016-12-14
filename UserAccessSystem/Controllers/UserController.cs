@@ -18,11 +18,11 @@ namespace UserAccessSystem.Controllers {
             var dtConverter = new IsoDateTimeConverter {DateTimeFormat = dateFormat};
 
             var userData = JsonConvert.DeserializeObject<User>(p, dtConverter);
-            var nextId = userService.GetAllUsers().Max(x => x.Id) + 1;
+            var nextId = this.userService.GetAllUsers().Max(x => x.Id) + 1;
 
             var user = UpdateUserData(userData, nextId);
 
-            userService.SaveUser(user);
+            this.userService.SaveUser(user);
         }
 
         private static User UpdateUserData(User userData, int id) {
@@ -40,7 +40,7 @@ namespace UserAccessSystem.Controllers {
         }
 
         public ActionResult EditUser(int p) {
-            return View(userService.GetUserViewModel(p));
+            return this.View(this.userService.GetUserViewModel(p));
         }
     }
 }

@@ -12,15 +12,15 @@ namespace UserAccessSystem.Controllers {
         }
 
         public ActionResult Index() {
-            return View();
+            return this.View();
         }
 
         public ActionResult AddUserPopup() {
-            return View();
+            return this.View();
         }
 
         public ActionResult ApiTests() {
-            return View();
+            return this.View();
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace UserAccessSystem.Controllers {
         ///     returns JSON string of all users for grid usage>
         /// </returns>
         public string GetAllUsers() {
-            var users = userService.GetUserViewModels();
+            var users = this.userService.GetUserViewModels();
             var usersSorted = users.OrderBy(x => x.Id);
             return JsonConvert.SerializeObject(UserModelConverter.ConvertUsersListToGridModel(usersSorted));
         }

@@ -15,19 +15,19 @@ namespace UserAccessSystem.Services.Windsor {
                 throw new ArgumentNullException(nameof(container));
             }
             this.container = container;
-            scope = container.BeginScope();
+            this.scope = container.BeginScope();
         }
 
         public void Dispose() {
-            scope.Dispose();
+            this.scope.Dispose();
         }
 
         public object GetService(Type serviceType) {
-            return container.Kernel.HasComponent(serviceType) ? container.Resolve(serviceType) : null;
+            return this.container.Kernel.HasComponent(serviceType) ? this.container.Resolve(serviceType) : null;
         }
 
         public IEnumerable<object> GetServices(Type serviceType) {
-            return container.ResolveAll(serviceType).Cast<object>().ToArray();
+            return this.container.ResolveAll(serviceType).Cast<object>().ToArray();
         }
     }
 }

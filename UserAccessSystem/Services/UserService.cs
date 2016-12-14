@@ -31,7 +31,7 @@ namespace UserAccessSystem.Services {
         ///     list of all users
         /// </returns>
         public IEnumerable<User> GetAllUsers() {
-            return repository.GetAll<User>();
+            return this.repository.GetAll<User>();
         }
 
         /// <summary>
@@ -40,11 +40,11 @@ namespace UserAccessSystem.Services {
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         public UserApiModel GetUserApiModel(int id) {
-            if (!DoesUserWithSpecifiedIdExist(id)) {
+            if (!this.DoesUserWithSpecifiedIdExist(id)) {
                 throw new ObjectNotFoundException("User with specified ID not found!");
             }
 
-            var user = repository.GetFirst<User>(x => x.Id == id);
+            var user = this.repository.GetFirst<User>(x => x.Id == id);
             return UserModelConverter.ConvertUserToApiModel(user);
         }
 
@@ -56,12 +56,12 @@ namespace UserAccessSystem.Services {
         /// </returns>
         /// <exception cref="GeneralServiceMethodException">$Failed to retrieve user view models! - {nameof(GetUserViewModels)}</exception>
         public IEnumerable<UserViewModel> GetUserViewModels() {
-            var users = GetAllUsers();
+            var users = this.GetAllUsers();
             try {
                 return UserModelConverter.ConvertUsersToViewModels(users);
             }
             catch (Exception ex) {
-                throw new GeneralServiceMethodException($"Failed to retrieve user view models! - {nameof(GetUserViewModels)}", ex.InnerException);
+                throw new GeneralServiceMethodException($"Failed to retrieve user view models! - {nameof(this.GetUserViewModels)}", ex.InnerException);
             }
         }
 
@@ -79,7 +79,7 @@ namespace UserAccessSystem.Services {
         /// </exception>
         /// <exception cref="GeneralServiceMethodException">$Failed to add user! - {nameof(SaveUser)}</exception>
         public int SaveUser(User user) {
-            if (DoesUserWithSpecifiedIdExist(user.Id)) {
+            if (this.DoesUserWithSpecifiedIdExist(user.Id)) {
                 throw new FailedToAddObjectToDatabaseException("User with specified ID already exists!");
             }
             if (string.IsNullOrEmpty(user.FirstName)) {
@@ -96,10 +96,10 @@ namespace UserAccessSystem.Services {
             }
 
             try {
-                return repository.Add(user).Id;
+                return this.repository.Add(user).Id;
             }
             catch (Exception ex) {
-                throw new GeneralServiceMethodException($"Failed to add user! - {nameof(SaveUser)}", ex.InnerException);
+                throw new GeneralServiceMethodException($"Failed to add user! - {nameof(this.SaveUser)}", ex.InnerException);
             }
         }
 
@@ -110,7 +110,7 @@ namespace UserAccessSystem.Services {
         ///     list of all users as user api models
         /// </returns>
         public IEnumerable<UserApiModel> GetWebApiUserModels() {
-            var users = GetAllUsers();
+            var users = this.GetAllUsers();
             return UserModelConverter.ConvertUsersToApiModels(users);
         }
 
@@ -120,21 +120,21 @@ namespace UserAccessSystem.Services {
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         public bool DoesUserWithSpecifiedIdExist(int id) {
-            return repository.GetAll<User>().Any(x => x.Id == id);
+            return this.repository.GetAll<User>().Any(x => x.Id == id);
         }
 
         /// <summary>
-        /// Gets the user view model.
+        ///     Gets the user view model.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         /// <exception cref="System.Data.Entity.Core.ObjectNotFoundException">User with specified ID not found!</exception>
         public UserViewModel GetUserViewModel(int id) {
-            if (!DoesUserWithSpecifiedIdExist(id)) {
+            if (!this.DoesUserWithSpecifiedIdExist(id)) {
                 throw new ObjectNotFoundException("User with specified ID not found!");
             }
 
-            var user = repository.GetFirst<User>(x => x.Id == id);
+            var user = this.repository.GetFirst<User>(x => x.Id == id);
             return UserModelConverter.ConvertUserToViewModel(user);
         }
     }

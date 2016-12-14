@@ -48,7 +48,7 @@ namespace UserAccessSystem.Models.Converters {
         }
 
         /// <summary>
-        /// Converts the user to API model.
+        ///     Converts the user to API model.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace UserAccessSystem.Models.Converters {
         }
 
         /// <summary>
-        /// Converts the user to view model.
+        ///     Converts the user to view model.
         /// </summary>
         /// <param name="user">The user.</param>
         /// <returns></returns>

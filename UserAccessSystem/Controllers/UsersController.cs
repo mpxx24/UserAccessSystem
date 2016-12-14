@@ -13,11 +13,11 @@ namespace UserAccessSystem.Controllers {
 
         // GET api/users
         public IEnumerable<UserApiModel> Get() {
-            return userService.GetWebApiUserModels();
+            return this.userService.GetWebApiUserModels();
         }
 
         public UserApiModel Get(int id) {
-            return userService.GetUserApiModel(id);
+            return this.userService.GetUserApiModel(id);
         }
     }
 }
