@@ -41,7 +41,7 @@
         $.ajax({
             url: '@Url.Action("SaveUser", "User")',
             type: 'POST',
-            dataType: 'json',
+            dataType: 'text',
             conventType: "application/json; charset=utf-8",
             data: { p: JSON.stringify(input) },
             complete: function () {
@@ -50,7 +50,7 @@
             },
             error: function (error) {
                 alert("Failed to add user!");
-                console.log(error);
+                console.log(error, "WHYYYYYYYYYYY");
             }
         });
     });

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -17,14 +18,17 @@ namespace UserAccessSystem.Controllers {
             var dtConverter = new IsoDateTimeConverter {DateTimeFormat = dateFormat};
 
             var userData = JsonConvert.DeserializeObject<User>(p, dtConverter);
-            var user = UpdateUserData(userData);
+            var nextId = userService.GetAllUsers().Max(x => x.Id) + 1;
+
+            var user = UpdateUserData(userData, nextId);
 
             userService.SaveUser(user);
         }
 
-        private static User UpdateUserData(User userData) {
+        private static User UpdateUserData(User userData, int id) {
             var user = new User
             {
+                Id = id,
                 FirstName = userData.FirstName,
                 LastName = userData.LastName,
                 LastSubscription = userData.LastSubscription,

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using System.Linq;
 using UserAccessSystem.DatabaseAccess.Models;
 using UserAccessSystem.Models.AppModels;
@@ -39,6 +40,10 @@ namespace UserAccessSystem.Services {
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         public UserApiModel GetUserApiModel(int id) {
+            if (DoesUserWithSpecifiedIdExist(id)) {
+                throw new ObjectNotFoundException("User with specified ID not found!");
+            }
+
             var user = repository.GetFirst<User>(x => x.Id == id);
             return UserModelConverter.ConvertUserToApiModel(user);
         }
@@ -74,9 +79,7 @@ namespace UserAccessSystem.Services {
         /// </exception>
         /// <exception cref="GeneralServiceMethodException">$Failed to add user! - {nameof(SaveUser)}</exception>
         public int SaveUser(User user) {
-            var allUsers = repository.GetAll<User>();
-
-            if (allUsers.Any(x => x.Id == user.Id)) {
+            if (DoesUserWithSpecifiedIdExist(user.Id)) {
                 throw new FailedToAddObjectToDatabaseException("User with specified ID already exists!");
             }
             if (string.IsNullOrEmpty(user.FirstName)) {
@@ -109,6 +112,15 @@ namespace UserAccessSystem.Services {
         public IEnumerable<UserApiModel> GetWebApiUserModels() {
             var users = GetAllUsers();
             return UserModelConverter.ConvertUsersToApiModels(users);
+        }
+
+        /// <summary>
+        ///     Doeses the user with specified identifier exist.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public bool DoesUserWithSpecifiedIdExist(int id) {
+            return repository.GetAll<User>().Any(x => x.Id == id);
         }
     }
 }

@@ -42,5 +42,12 @@ namespace UserAccessSystem.Services.Interfaces {
         /// <param name="user">The user.</param>
         /// <returns></returns>
         int SaveUser(User user);
+
+        /// <summary>
+        /// Doeses the user with specified identifier exist.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        bool DoesUserWithSpecifiedIdExist(int id);
     }
 }
