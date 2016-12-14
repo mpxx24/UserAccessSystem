@@ -40,7 +40,7 @@ namespace UserAccessSystem.Services {
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         public UserApiModel GetUserApiModel(int id) {
-            if (DoesUserWithSpecifiedIdExist(id)) {
+            if (!DoesUserWithSpecifiedIdExist(id)) {
                 throw new ObjectNotFoundException("User with specified ID not found!");
             }
 
@@ -121,6 +121,21 @@ namespace UserAccessSystem.Services {
         /// <returns></returns>
         public bool DoesUserWithSpecifiedIdExist(int id) {
             return repository.GetAll<User>().Any(x => x.Id == id);
+        }
+
+        /// <summary>
+        /// Gets the user view model.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Data.Entity.Core.ObjectNotFoundException">User with specified ID not found!</exception>
+        public UserViewModel GetUserViewModel(int id) {
+            if (!DoesUserWithSpecifiedIdExist(id)) {
+                throw new ObjectNotFoundException("User with specified ID not found!");
+            }
+
+            var user = repository.GetFirst<User>(x => x.Id == id);
+            return UserModelConverter.ConvertUserToViewModel(user);
         }
     }
 }

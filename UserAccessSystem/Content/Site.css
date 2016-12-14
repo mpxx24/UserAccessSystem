@@ -40,3 +40,7 @@ textarea {
     display: inline-block;
     min-height: 10px;
 }
+
+#userGridActions button {
+    margin-right: 5px;
+}

@@ -38,5 +38,9 @@ namespace UserAccessSystem.Controllers {
             };
             return user;
         }
+
+        public ActionResult EditUser(int p) {
+            return View(userService.GetUserViewModel(p));
+        }
     }
 }

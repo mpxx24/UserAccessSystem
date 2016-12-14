@@ -222,11 +222,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\AddUserPopup.cshtml" />
     <Content Include="Views\Home\ApiTests.cshtml" />
+    <None Include="Views\User\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="fonts\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -8,10 +8,11 @@ namespace UserAccessSystem.Services.Interfaces {
     /// </summary>
     public interface IUserService {
         /// <summary>
-        ///     Gets all users.
+        ///     Doeses the user with specified identifier exist.
         /// </summary>
-        /// <returns>list of all users</returns>
-        IEnumerable<User> GetAllUsers();
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        bool DoesUserWithSpecifiedIdExist(int id);
 
         /// <summary>
         ///     Gets the user.
@@ -19,6 +20,26 @@ namespace UserAccessSystem.Services.Interfaces {
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         UserApiModel GetUserApiModel(int id);
+
+        /// <summary>
+        ///     Gets the user view model.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        UserViewModel GetUserViewModel(int id);
+
+        /// <summary>
+        ///     Saves the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        int SaveUser(User user);
+
+        /// <summary>
+        ///     Gets all users.
+        /// </summary>
+        /// <returns>list of all users</returns>
+        IEnumerable<User> GetAllUsers();
 
         /// <summary>
         ///     Gets the web API user model.
@@ -35,19 +56,5 @@ namespace UserAccessSystem.Services.Interfaces {
         ///     list of all users as user view models
         /// </returns>
         IEnumerable<UserViewModel> GetUserViewModels();
-
-        /// <summary>
-        ///     Saves the user.
-        /// </summary>
-        /// <param name="user">The user.</param>
-        /// <returns></returns>
-        int SaveUser(User user);
-
-        /// <summary>
-        /// Doeses the user with specified identifier exist.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns></returns>
-        bool DoesUserWithSpecifiedIdExist(int id);
     }
 }

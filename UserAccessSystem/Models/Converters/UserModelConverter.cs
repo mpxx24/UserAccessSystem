@@ -47,6 +47,11 @@ namespace UserAccessSystem.Models.Converters {
             return userGridModel;
         }
 
+        /// <summary>
+        /// Converts the user to API model.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
         public static UserApiModel ConvertUserToApiModel(User user) {
             return new UserApiModel
             {
@@ -58,7 +63,12 @@ namespace UserAccessSystem.Models.Converters {
             };
         }
 
-        private static UserViewModel ConvertUserToViewModel(User user) {
+        /// <summary>
+        /// Converts the user to view model.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        public static UserViewModel ConvertUserToViewModel(User user) {
             return new UserViewModel
             {
                 Id = user.Id,
