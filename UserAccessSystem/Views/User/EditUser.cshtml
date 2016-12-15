@@ -6,8 +6,31 @@
 }
 
 <h2>@ViewBag.Title</h2>
+<div class="EditUserFields">
+    <div>
+        @Html.Label("lbEditUser_Name", "Name")
+        @Html.TextBox("tbEditUser_Name", "", new { @class = "form-control", style = "width: 100%;" })
+    </div>
+    <div>
+        @Html.Label("lbEditUser_LastName", "Last name")
+        @Html.TextBox("tbEditUser_LastName", "", new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.Label("lbEditUser_DateOfBirth", "Date of birth")
+        @Html.Editor("dpEditUser_DateOfBirth")
+    </div>
+    <div>
+        @Html.Label("lbEditUser_LastSubscriptionDate", "Last subscription")
+        @Html.Editor("dpEditUser_LastSubscription")
+    </div>
+    <div>
+        <button id="btnEditUser_Edit" type="button" class="btn btn-primary" style="float: right">Edit</button>
+    </div>
+</div>
 
-@Model.Id
-@Model.FirstName
-@Model.LastName
-@Model.LastSubscription
+<script type="text/javascript">
+    $(document).ready(function () {
+        ControlsHelper.CreateDatePicker("dpEditUser_DateOfBirth");
+        ControlsHelper.CreateDatePicker("dpEditUser_LastSubscription");
+    });
+</script>

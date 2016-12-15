@@ -24,6 +24,7 @@
 </div>
 
 <div id="popupAddUser"></div>
+<div id="popupEditUser"></div>
 
 @* ReSharper disable PossiblyUnassignedProperty *@
 <script type="text/javascript">
@@ -50,7 +51,9 @@
         //}
     });
 
-    var config = {
+    //#### ADD USER ####//
+
+    var configAdd = {
         autoOpen: false,
         position: { my: "top+150px", at: "top", of: window },
         resizable: false,
@@ -61,26 +64,44 @@
         }
     };
 
-    $("#popupAddUser").dialog(config);
+    $("#popupAddUser").dialog(configAdd);
 
-    $("#btnAddUser").on("click", function () {
-        $("#popupAddUser").dialog(config).dialog("open");
+    $("#btnAddUser").on("click", function() {
+        $("#popupAddUser").dialog(configAdd).dialog("open");
     });
 
-    $("#btnEditUser").on("click", function () {
+    //#### EDIT USER ####//
+   
+
+    $("#btnEditUser").on("click", function() {
         var selectedRows = $("#grid-basic").bootgrid("getSelectedRows");
+
+        var configEdit = {
+            autoOpen: false,
+            position: { my: "top+150px", at: "top", of: window },
+            resizable: false,
+            title: 'Edit User',
+            modal: true,
+            open: function() {
+                $(this).load('@Url.Action("EditUser", "User")' + "/p=" + selectedRows);
+            }
+        }
+
+        $("#popupEditUser").dialog(configEdit);
 
         if (selectedRows.length > 1) {
             alert("Only one user can be selected to perform EDIT action!");
         } else if (selectedRows.length === 0) {
             alert("You need to select a user to perform EDIT action!");
         } else {
+            //$("#popupAddUser").dialog(configEdit).dialog("open");
             $.ajax({
                 url: '@Url.Action("EditUser", "User")',
                 type: "POST",
-                dataType: 'json',
+                dataType: 'html',
                 conventType: "application/json; charset=utf-8",
-                data: { p: selectedRows }
+                data: { p: selectedRows },
+                //success:  $("#popupEditUser").dialog("open")
             });
         }
     });
