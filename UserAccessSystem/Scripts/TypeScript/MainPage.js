@@ -14,6 +14,7 @@ var MainPage = (function () {
         var thisObj = this;
         $("#" + thisObj.configuration.ButtonAddUserId).click(function () { thisObj.openAddUserPopup(); });
         $("#" + thisObj.configuration.ButtonEditUserId).click(function () { thisObj.openEditUserPopup(); });
+        $("#" + thisObj.configuration.ButtonRemoveUserId).click(function () { thisObj.removeUsers(); });
     };
     ;
     MainPage.prototype.initializeAddUserPopup = function () {
@@ -36,6 +37,28 @@ var MainPage = (function () {
     };
     ;
     MainPage.prototype.initializeEditUserPopup = function () {
+        var editPopupUrl = $("#" + this.configuration.EditUserPopup).data("request-address");
+        var selectedRows = $("#" + this.configuration.UsersGridId).bootgrid("getSelectedRows");
+        var configEdit = {
+            autoOpen: false,
+            position: { my: "top+150px", at: "top", of: window },
+            resizable: false,
+            title: "Update User",
+            modal: true,
+            open: function () {
+                $(this).load(editPopupUrl + "/?p=" + selectedRows);
+            }
+        };
+        $("#" + this.configuration.EditUserPopup).dialog(configEdit);
+        if (selectedRows.length > 1) {
+            alert("Only one user can be selected to perform EDIT action!");
+        }
+        else if (selectedRows.length === 0) {
+            alert("You need to select a user to perform EDIT action!");
+        }
+        else {
+            $("#" + this.configuration.EditUserPopup).dialog(configEdit).dialog("open");
+        }
     };
     MainPage.prototype.openEditUserPopup = function () {
     };
@@ -61,6 +84,26 @@ var MainPage = (function () {
             //for (var i = 0; i < rows.length; i++) {
             //    rowIds.push(rows[i].Id);
             //}
+        });
+    };
+    MainPage.prototype.removeUsers = function () {
+        var removeUsersUrl = $("#" + this.configuration.ButtonRemoveUserId).data("request-address");
+        console.log(removeUsersUrl);
+        var selectedRows = $("#" + this.configuration.UsersGridId).bootgrid("getSelectedRows");
+        console.log(selectedRows);
+        var thisObj = this;
+        $.ajax({
+            url: removeUsersUrl,
+            type: "POST",
+            dataType: "text",
+            conventType: "application/json; charset=utf-8",
+            data: { p: JSON.stringify(selectedRows) },
+            complete: function () {
+                $("#" + thisObj.configuration.UsersGridId).bootgrid("reload");
+            },
+            error: function (error) {
+                alert("Failed to remove user!");
+            }
         });
     };
     return MainPage;

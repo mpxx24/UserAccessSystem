@@ -21,7 +21,7 @@
 <div id="userGridActions" style="display: flex">
     <button id="btnAddUser" type="button" class="btn btn-primary" style="float: right">Add user</button>
     <button id="btnEditUser" type="button" class="btn btn-default" style="float: right">Update user</button>
-    <button id="btnRemoveUser" type="button" class="btn btn-danger" style="float: right">Remove users</button>
+    <button id="btnRemoveUser" type="button" class="btn btn-danger" style="float: right" data-request-address="@Url.Action("DeleteUser", "User")">Remove users</button>
 </div>
 
 <div id="popupAddUser" data-request-address="@Url.Action("AddUserPopup", "Home")"></div>
@@ -45,20 +45,6 @@
 
     //#### REMOVE USER ####//
     @*$("#btnRemoveUser").on("click", function () {
-        var selectedRows = $("#grid-basic").bootgrid("getSelectedRows");
-
-        $.ajax({
-            url: '@Url.Action("DeleteUser", "User")',
-            type: 'POST',
-            dataType: 'text',
-            conventType: "application/json; charset=utf-8",
-            data: { p: JSON.stringify(selectedRows) },
-            complete: function () {
-                $("#grid-basic").bootgrid("reload");
-            },
-            error: function (error) {
-                alert("Failed to remove user!");
-            }
-        });
+        
     });*@
 </script>
