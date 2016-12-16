@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Newtonsoft.Json;
@@ -41,6 +42,27 @@ namespace UserAccessSystem.Controllers {
 
         public ActionResult EditUser(int p) {
             return this.View(this.userService.GetUserViewModel(p));
+        }
+
+        public void UpdateUser(string p) {
+            const string dateFormat = "dd/MM/yyyy";
+            var dtConverter = new IsoDateTimeConverter { DateTimeFormat = dateFormat };
+
+            var userData = JsonConvert.DeserializeObject<User>(p, dtConverter);
+            var userToUpdate = this.userService.GetUser(userData.Id);
+            userToUpdate.FirstName = userData.FirstName;
+            userToUpdate.LastName = userData.LastName;
+            userToUpdate.LastSubscription = userData.LastSubscription;
+            userToUpdate.IsActiveAccount = userData.LastSubscription >= DateTime.Today.AddDays(-28);
+
+            this.userService.UpdateUser(userToUpdate);
+        }
+
+        public void DeleteUser(string p) {
+            var ids = JsonConvert.DeserializeObject<List<int>>(p);
+            foreach (var id in ids) {
+                this.userService.DeleteUser(id);
+            }
         }
     }
 }

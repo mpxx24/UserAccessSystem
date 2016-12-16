@@ -10,5 +10,6 @@ namespace UserAccessSystem.Repository {
         T Add<T>(T entity) where T : class;
         int Edit<T>(T entity) where T : class;
         void Save();
+        void Remove<T>(T entity) where T : class;
     }
 }

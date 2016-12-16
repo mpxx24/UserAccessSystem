@@ -36,6 +36,25 @@ namespace UserAccessSystem.Services.Interfaces {
         int SaveUser(User user);
 
         /// <summary>
+        ///     Gets the user.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        User GetUser(int id);
+
+        /// <summary>
+        /// Updates the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        void UpdateUser(User user);
+
+        /// <summary>
+        /// Deletes the user.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        void DeleteUser(int userId);
+
+        /// <summary>
         ///     Gets all users.
         /// </summary>
         /// <returns>list of all users</returns>

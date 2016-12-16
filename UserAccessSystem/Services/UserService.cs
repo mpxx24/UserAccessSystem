@@ -25,6 +25,14 @@ namespace UserAccessSystem.Services {
         }
 
         /// <summary>
+        /// Deletes the user.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        public void DeleteUser(int userId) {
+            var user = this.GetUser(userId);
+            this.repository.Remove(user);
+        }
+        /// <summary>
         ///     Gets all users.
         /// </summary>
         /// <returns>
@@ -32,6 +40,15 @@ namespace UserAccessSystem.Services {
         /// </returns>
         public IEnumerable<User> GetAllUsers() {
             return this.repository.GetAll<User>();
+        }
+
+        /// <summary>
+        /// Gets the user.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public User GetUser(int id) {
+            return this.repository.GetFirst<User>(x => x.Id == id);
         }
 
         /// <summary>
@@ -136,6 +153,14 @@ namespace UserAccessSystem.Services {
 
             var user = this.repository.GetFirst<User>(x => x.Id == id);
             return UserModelConverter.ConvertUserToViewModel(user);
+        }
+
+        /// <summary>
+        /// Updates the user.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        public void UpdateUser(User user) {
+            this.repository.Edit(user);
         }
     }
 }
