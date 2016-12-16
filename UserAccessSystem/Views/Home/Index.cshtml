@@ -24,82 +24,27 @@
     <button id="btnRemoveUser" type="button" class="btn btn-danger" style="float: right">Remove users</button>
 </div>
 
-<div id="popupAddUser"></div>
-<div id="popupEditUser"></div>
+<div id="popupAddUser" data-request-address="@Url.Action("AddUserPopup", "Home")"></div>
+<div id="popupEditUser" data-request-address="@Url.Action("EditUser", "User")"></div>
 
 @* ReSharper disable PossiblyUnassignedProperty *@
 <script type="text/javascript">
-    $("#grid-basic").bootgrid({
-        ajax: true,
-        post: function () {
-            return {
-                id: "x8gt2424-1ht7-4jh5-8123-78duqklqugej"
-            };
-        },
-        url: "Home/GetAllUsers",
-        selection: true,
-        multiSelect: true,
-        rowSelect: false,
-        keepSelection: true,
-        templates: {
-            search: ""
-        },
-        navigation: 0
-    }).on("selected.rs.jquery.bootgrid", function (e, rows) {
-        //var rowIds = [];
-        //for (var i = 0; i < rows.length; i++) {
-        //    rowIds.push(rows[i].Id);
-        //}
-    });
+    var config = {
+        ButtonAddUserId: "btnAddUser",
+        ButtonEditUserId: "btnEditUser",
+        ButtonRemoveUserId: "btnRemoveUser",
+        UsersGridId: "grid-basic",
+        AddUserPopup: "popupAddUser",
+        EditUserPopup: "popupEditUser"
+    }
 
-    //#### ADD USER ####//
+    new MainPage(config);
 
-    var configAdd = {
-        autoOpen: false,
-        position: { my: "top+150px", at: "top", of: window },
-        resizable: false,
-        title: 'Add User',
-        modal: true,
-        open: function () {
-            $(this).load('@Url.Action("AddUserPopup", "Home")');
-        }
-    };
-
-    $("#popupAddUser").dialog(configAdd);
-
-    $("#btnAddUser").on("click", function() {
-        $("#popupAddUser").dialog(configAdd).dialog("open");
-    });
-
-    //#### EDIT USER ####//
-
-    $("#btnEditUser").on("click", function() {
-        var selectedRows = $("#grid-basic").bootgrid("getSelectedRows");
-
-        var configEdit = {
-            autoOpen: false,
-            position: { my: "top+150px", at: "top", of: window },
-            resizable: false,
-            title: 'Update User',
-            modal: true,
-            open: function() {
-                $(this).load('@Url.Action("EditUser", "User")' + "/?p=" + selectedRows);
-            }
-        }
-
-        $("#popupEditUser").dialog(configEdit);
-
-        if (selectedRows.length > 1) {
-            alert("Only one user can be selected to perform EDIT action!");
-        } else if (selectedRows.length === 0) {
-            alert("You need to select a user to perform EDIT action!");
-        } else {
-            $("#popupAddUser").dialog(configEdit).dialog("open");
-        }
-    });
+   
+  
 
     //#### REMOVE USER ####//
-    $("#btnRemoveUser").on("click", function () {
+    @*$("#btnRemoveUser").on("click", function () {
         var selectedRows = $("#grid-basic").bootgrid("getSelectedRows");
 
         $.ajax({
@@ -115,5 +60,5 @@
                 alert("Failed to remove user!");
             }
         });
-    });
+    });*@
 </script>
