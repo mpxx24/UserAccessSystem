@@ -53,35 +53,33 @@ class MainPage {
     };
 
     initializeEditUserPopup(): void {
-        var editPopupUrl = $(`#${this.configuration.EditUserPopup}`).data("request-address");
-       
-        var selectedRows = $(`#${this.configuration.UsersGridId}`).bootgrid("getSelectedRows");
-
-        var configEdit = {
+        this.configEditUserPopup = {
             autoOpen: false,
             position: { my: "top+150px", at: "top", of: window },
             resizable: false,
             title: "Update User",
-            modal: true,
-            open() {
-                $(this).load(editPopupUrl + "/?p=" + selectedRows);
-            }
-        }
+            modal: true
+        };
+        $(`#${this.configuration.EditUserPopup}`).dialog(this.configEditUserPopup);
+        console.log("init edit popup");
+    };
 
-        $(`#${this.configuration.EditUserPopup}`).dialog(configEdit);
+    openEditUserPopup(): void {
+        var editPopupUrl = $(`#${this.configuration.EditUserPopup}`).data("request-address");
+        var selectedRows = $(`#${this.configuration.UsersGridId}`).bootgrid("getSelectedRows");
+        
+        this.configEditUserPopup.open = () => {
+            $(`#${this.configuration.EditUserPopup}`).load(editPopupUrl + "/?p=" + selectedRows);
+        }
 
         if (selectedRows.length > 1) {
             alert("Only one user can be selected to perform EDIT action!");
         } else if (selectedRows.length === 0) {
             alert("You need to select a user to perform EDIT action!");
         } else {
-            $(`#${this.configuration.EditUserPopup}`).dialog(configEdit).dialog("open");
+            $(`#${this.configuration.EditUserPopup}`).dialog(this.configEditUserPopup).dialog("open");
         }
-    }
-
-    openEditUserPopup(): void {
-
-    }
+    };
 
     initializeGrid(): void {
         $(`#${this.configuration.UsersGridId}`).bootgrid({
@@ -106,7 +104,7 @@ class MainPage {
             //    rowIds.push(rows[i].Id);
             //}
         });
-    }
+    };
 
     removeUsers(): void {
         var removeUsersUrl = $(`#${this.configuration.ButtonRemoveUserId}`).data("request-address");
@@ -126,5 +124,5 @@ class MainPage {
                 alert("Failed to remove user!");
             }
         });
-    }
+    };
 }

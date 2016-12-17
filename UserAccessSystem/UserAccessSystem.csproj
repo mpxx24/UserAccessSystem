@@ -245,6 +245,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\TypeScript\AddUser.ts" />
+    <TypeScriptCompile Include="Scripts\TypeScript\EditUser.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\MainPage.ts" />
     <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />

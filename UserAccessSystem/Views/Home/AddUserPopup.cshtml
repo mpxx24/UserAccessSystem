@@ -5,11 +5,11 @@
 <div class="addUserFields">
     <div>
         @Html.Label("lbAddUser_Name", "Name")
-        @Html.TextBox("tbAddUser_Name", "", new {@class = "form-control", style = "width: 100%;"})
+        @Html.TextBox("tbAddUser_Name", "", new { @class = "form-control", style = "width: 100%;" })
     </div>
     <div>
         @Html.Label("lbAddUser_LastName", "Last name")
-        @Html.TextBox("tbAddUser_LastName", "", new {@class = "form-control"})
+        @Html.TextBox("tbAddUser_LastName", "", new { @class = "form-control" })
     </div>
     <div>
         @Html.Label("lbAddUser_DateOfBirth", "Date of birth")
@@ -20,38 +20,23 @@
         @Html.Editor("dpAddUser_LastSubscription")
     </div>
     <div>
-        <button id="btnAddUser_Add" type="button" class="btn btn-primary" style="float: right">Add</button>
+        <button id="btnAddUser_Add" type="button" class="btn btn-primary" style="float: right" data-request-address="@Url.Action("SaveUser", "User")">Add</button>
     </div>
 </div>
 
+@* ReSharper disable once ConstructorCallNotUsed *@
 <script type="text/javascript">
     $(document).ready(function () {
-        ControlsHelper.CreateDatePicker("dpAddUser_DateOfBirth");
-        ControlsHelper.CreateDatePicker("dpAddUser_LastSubscription");
-    });
-    
-    $("#btnAddUser_Add").click(function () {
-        var input = {
-            FirstName: $("#tbAddUser_Name").val(),
-            LastName: $("#tbAddUser_LastName").val(),
-            DateOfBirth: $("#dpAddUser_DateOfBirth").val(),
-            LastSubscription: $("#dpAddUser_LastSubscription").val()
+        var config = {
+            ButtonAddUserId: "btnAddUser_Add",
+            FirstNameTextBoxId: "tbAddUser_Name",
+            LastNameTextBoxId: "tbAddUser_LastName",
+            DateOfBirthDatePickerId: "dpAddUser_DateOfBirth",
+            LastSubscriptionDatePickerId: "dpAddUser_LastSubscription",
+            PopupAddUserId: "popupAddUser",
+            UserGridId: "grid-basic"
         }
-        
-        $.ajax({
-            url: '@Url.Action("SaveUser", "User")',
-            type: 'POST',
-            dataType: 'text',
-            conventType: "application/json; charset=utf-8",
-            data: { p: JSON.stringify(input) },
-            complete: function () {
-                $("#popupAddUser").dialog("close");
-                $("#grid-basic").bootgrid("reload");
-            },
-            error: function (error) {
-                alert("Failed to add user!");
-                console.log(error, "WHYYYYYYYYYYY");
-            }
-        });
+
+        new AddUser(config);
     });
 </script>

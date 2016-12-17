@@ -27,24 +27,18 @@
 <div id="popupAddUser" data-request-address="@Url.Action("AddUserPopup", "Home")"></div>
 <div id="popupEditUser" data-request-address="@Url.Action("EditUser", "User")"></div>
 
-@* ReSharper disable PossiblyUnassignedProperty *@
+@* ReSharper disable once ConstructorCallNotUsed *@
 <script type="text/javascript">
-    var config = {
-        ButtonAddUserId: "btnAddUser",
-        ButtonEditUserId: "btnEditUser",
-        ButtonRemoveUserId: "btnRemoveUser",
-        UsersGridId: "grid-basic",
-        AddUserPopup: "popupAddUser",
-        EditUserPopup: "popupEditUser"
-    }
+    $(document).ready(function() {
+        var config = {
+            ButtonAddUserId: "btnAddUser",
+            ButtonEditUserId: "btnEditUser",
+            ButtonRemoveUserId: "btnRemoveUser",
+            UsersGridId: "grid-basic",
+            AddUserPopup: "popupAddUser",
+            EditUserPopup: "popupEditUser"
+        }
 
-    new MainPage(config);
-
-   
-  
-
-    //#### REMOVE USER ####//
-    @*$("#btnRemoveUser").on("click", function () {
-        
-    });*@
+        new MainPage(config);
+    });
 </script>

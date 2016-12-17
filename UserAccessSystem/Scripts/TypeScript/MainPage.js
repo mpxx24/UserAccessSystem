@@ -37,19 +37,24 @@ var MainPage = (function () {
     };
     ;
     MainPage.prototype.initializeEditUserPopup = function () {
-        var editPopupUrl = $("#" + this.configuration.EditUserPopup).data("request-address");
-        var selectedRows = $("#" + this.configuration.UsersGridId).bootgrid("getSelectedRows");
-        var configEdit = {
+        this.configEditUserPopup = {
             autoOpen: false,
             position: { my: "top+150px", at: "top", of: window },
             resizable: false,
             title: "Update User",
-            modal: true,
-            open: function () {
-                $(this).load(editPopupUrl + "/?p=" + selectedRows);
-            }
+            modal: true
         };
-        $("#" + this.configuration.EditUserPopup).dialog(configEdit);
+        $("#" + this.configuration.EditUserPopup).dialog(this.configEditUserPopup);
+        console.log("init edit popup");
+    };
+    ;
+    MainPage.prototype.openEditUserPopup = function () {
+        var _this = this;
+        var editPopupUrl = $("#" + this.configuration.EditUserPopup).data("request-address");
+        var selectedRows = $("#" + this.configuration.UsersGridId).bootgrid("getSelectedRows");
+        this.configEditUserPopup.open = function () {
+            $("#" + _this.configuration.EditUserPopup).load(editPopupUrl + "/?p=" + selectedRows);
+        };
         if (selectedRows.length > 1) {
             alert("Only one user can be selected to perform EDIT action!");
         }
@@ -57,11 +62,10 @@ var MainPage = (function () {
             alert("You need to select a user to perform EDIT action!");
         }
         else {
-            $("#" + this.configuration.EditUserPopup).dialog(configEdit).dialog("open");
+            $("#" + this.configuration.EditUserPopup).dialog(this.configEditUserPopup).dialog("open");
         }
     };
-    MainPage.prototype.openEditUserPopup = function () {
-    };
+    ;
     MainPage.prototype.initializeGrid = function () {
         $("#" + this.configuration.UsersGridId).bootgrid({
             ajax: true,
@@ -86,11 +90,10 @@ var MainPage = (function () {
             //}
         });
     };
+    ;
     MainPage.prototype.removeUsers = function () {
         var removeUsersUrl = $("#" + this.configuration.ButtonRemoveUserId).data("request-address");
-        console.log(removeUsersUrl);
         var selectedRows = $("#" + this.configuration.UsersGridId).bootgrid("getSelectedRows");
-        console.log(selectedRows);
         var thisObj = this;
         $.ajax({
             url: removeUsersUrl,
@@ -106,6 +109,7 @@ var MainPage = (function () {
             }
         });
     };
+    ;
     return MainPage;
 }());
 //# sourceMappingURL=MainPage.js.map

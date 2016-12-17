@@ -13,43 +13,31 @@
     </div>
     <div>
         @Html.Label("lbEditUser_LastName", "Last name")
-        @Html.TextBoxFor(x => x.LastName, new {id = "tbEditUser_LastName", @class = "form-control" })
+        @Html.TextBoxFor(x => x.LastName, new { id = "tbEditUser_LastName", @class = "form-control" })
     </div>
     <div>
         @Html.Label("lbEditUser_LastSubscriptionDate", "Last subscription")
-        @Html.TextBoxFor(x => x.LastSubscription, new {id = "dpEditUser_LastSubscriptionDate" })
+        @Html.TextBoxFor(x => x.LastSubscription, new { id = "dpEditUser_LastSubscriptionDate" })
     </div>
     <div>
-        <button id="btnEditUser_Save" type="button" class="btn btn-primary" style="float: right">Edit</button>
+        <button id="btnEditUser_Save" type="button" class="btn btn-primary" style="float: right" data-request-address="@Url.Action("UpdateUser", "User")">Edit</button>
     </div>
 </div>
 
+@* ReSharper disable once ConstructorCallNotUsed *@
 <script type="text/javascript">
     $(document).ready(function () {
-        ControlsHelper.CreateDatePicker("dpEditUser_LastSubscriptionDate");
-    });
-
-    $("#btnEditUser_Save").click(function () {
-        var input = {
-            Id: @Model.Id,
-            FirstName: $("#tbEditUser_Name").val(),
-            LastName: $("#tbEditUser_LastName").val(),
-            LastSubscription: $("#dpEditUser_LastSubscriptionDate").val()
+        var config = {
+            ButtonSaveEditedUserIs: "btnEditUser_Save",
+            FirstNameTextBoxId: "tbEditUser_Name",
+            LastNameTextBoxId: "tbEditUser_LastName",
+            LastSubscriptionDatePickerId: "dpEditUser_LastSubscriptionDate",
+            PopupEditUserId: "popupEditUser",
+            UserGridId: "grid-basic",
+            Model_Id: '@Model.Id',
+            Model_LastSubscriptioon: '@Model.LastSubscription'
         }
 
-        $.ajax({
-            url: '@Url.Action("UpdateUser", "User")',
-            type: 'POST',
-            dataType: 'text',
-            conventType: "application/json; charset=utf-8",
-            data: { p: JSON.stringify(input) },
-            complete: function () {
-                $("#popupEditUser").dialog("close");
-                $("#grid-basic").bootgrid("reload");
-            },
-            error: function (error) {
-                alert("Failed to edit user!");
-            }
-        });
+        new EditUser(config);
     });
 </script>
