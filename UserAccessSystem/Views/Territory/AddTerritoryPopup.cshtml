@@ -1,0 +1,37 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Add Territory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="addTerritoryFields">
+    <div>
+        @Html.Label("lbAddTerritory_Name", "Name")
+        @Html.TextBox("tbAddTerritory_Name", "", new {@class = "form-control", style = "width: 100%;"})
+    </div>
+    <div>
+        @Html.Label("lbAddTerritory_ShortName", "Short name")
+        @Html.TextBox("tbAddTerritory_ShortName", "", new {@class = "form-control"})
+    </div>
+    <div>
+        <button id="btnAddTerritory_Add" type="button" class="btn btn-primary" style="float: right" data-request-address="@Url.Action("SaveTerritory", "Territory")">Add</button>
+    </div>
+</div>
+
+@* ReSharper disable once ConstructorCallNotUsed *@
+<script type="text/javascript">
+    $(document).ready(function () {
+        var config = {
+            ButtonAddTerritoryId: "btnAddTerritory_Add",
+            NameTextBoxId: "tbAddTerritory_Name",
+            ShortNameTextBoxId: "tbAddTerritory_ShortName",
+            PopupAddTerritoryId: "popupAddTerritory",
+            TerritoryGridId: "grid-basic-territory"
+        }
+
+        new AddTerritory(config);
+    });
+</script>

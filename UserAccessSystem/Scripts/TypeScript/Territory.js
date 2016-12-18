@@ -7,14 +7,16 @@ var Territory = (function () {
         this.initializeControls();
     }
     Territory.prototype.initializeView = function () {
+        this.initializeAddTerritoryPopup();
     };
     ;
     Territory.prototype.initializeControls = function () {
         var thisObj = this;
-        $("#" + this.configuration.ButtonAddTerritoryId).click(function () { return thisObj.addTerritory(); });
+        $("#" + this.configuration.ButtonAddTerritoryId).click(function () { return thisObj.openAddTerritoryPopup(); });
     };
     ;
-    Territory.prototype.addTerritory = function () {
+    Territory.prototype.openAddTerritoryPopup = function () {
+        $("#" + this.configuration.AddTerritoryPopup).dialog(this.configAddTerritoryPopup).dialog("open");
     };
     ;
     Territory.prototype.initializeGrid = function () {
@@ -32,6 +34,22 @@ var Territory = (function () {
             navigation: 0
         });
     };
+    ;
+    Territory.prototype.initializeAddTerritoryPopup = function () {
+        var addPopupUrl = $("#" + this.configuration.AddTerritoryPopup).data("request-address");
+        this.configAddTerritoryPopup = {
+            autoOpen: false,
+            position: { my: "top+150px", at: "top", of: window },
+            resizable: false,
+            title: "Add Territory",
+            modal: true,
+            open: function () {
+                $(this).load(addPopupUrl);
+            }
+        };
+        $("#" + this.configuration.AddTerritoryPopup).dialog(this.configAddTerritoryPopup);
+    };
+    ;
     return Territory;
 }());
 //# sourceMappingURL=Territory.js.map

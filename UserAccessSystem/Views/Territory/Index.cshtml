@@ -12,21 +12,24 @@
             <th data-column-id="Name">First name</th>
             <th data-column-id="ShortName">Short name</th>
             <th data-column-id="IsRequireSpecialUserAccessRights">Requires special access rights</th>
-            <th data-column-id="IsAvailableForAll">Short name</th>
+            <th data-column-id="IsAvailableForAll">Available for all</th>
         </tr>
     </thead>
 </table>
 
-<div id="userGridActions" style="display: flex">
+<div id="territoryGridActions" style="display: flex">
     <button id="btnAddTerritory" type="button" class="btn btn-primary" style="float: right">Add territory</button>
 </div>
+
+<div id="popupAddTerritory" data-request-address="@Url.Action("AddTerritoryPopup", "Territory")"></div>
 
 @* ReSharper disable once ConstructorCallNotUsed *@
 <script type="text/javascript">
     $(document).ready(function() {
         var config = {
             TerritoryGridId: "grid-basic-territory",
-            ButtonAddTerritoryId: "btnAddTerritory"
+            ButtonAddTerritoryId: "btnAddTerritory",
+            AddTerritoryPopup: "popupAddTerritory"
         }
 
         new Territory(config);
