@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UserAccessSystem.DatabaseAccess.Models;
+using UserAccessSystem.Models.AppModels;
 
 namespace UserAccessSystem.Services.Interfaces {
     public interface ITerritoryService {
@@ -29,5 +30,11 @@ namespace UserAccessSystem.Services.Interfaces {
         /// </summary>
         /// <returns></returns>
         IEnumerable<Territory> GetAllTerritories();
+
+        /// <summary>
+        /// Gets the territories view models.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<TerritoryViewModel> GetTerritoriesViewModels();
     }
 }

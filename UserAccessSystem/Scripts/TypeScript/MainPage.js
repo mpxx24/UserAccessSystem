@@ -1,16 +1,17 @@
+"use strict";
 var MainPage = (function () {
     function MainPage(configuration) {
         this.configuration = configuration;
         this.initializeGrid();
         this.initializeView();
-        this.initlializeControls();
+        this.initializeControls();
     }
     MainPage.prototype.initializeView = function () {
         this.initializeAddUserPopup();
         this.initializeEditUserPopup();
     };
     ;
-    MainPage.prototype.initlializeControls = function () {
+    MainPage.prototype.initializeControls = function () {
         var thisObj = this;
         $("#" + thisObj.configuration.ButtonAddUserId).click(function () { thisObj.openAddUserPopup(); });
         $("#" + thisObj.configuration.ButtonEditUserId).click(function () { thisObj.openEditUserPopup(); });

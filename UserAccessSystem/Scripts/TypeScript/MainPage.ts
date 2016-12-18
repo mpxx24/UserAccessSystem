@@ -1,4 +1,5 @@
-﻿declare var $: any;
+﻿import Interface = require("./IInterface");
+declare var $: any;
 
 interface IMainPageConfiguration {
     ButtonAddUserId: string;
@@ -9,7 +10,7 @@ interface IMainPageConfiguration {
     EditUserPopup: string;
 }
 
-class MainPage {
+class MainPage implements Interface.IInterface{
     configuration: IMainPageConfiguration;
     configAddUserPopup: any;
     configEditUserPopup: any;
@@ -18,7 +19,7 @@ class MainPage {
         this.configuration = configuration;
         this.initializeGrid();
         this.initializeView();
-        this.initlializeControls();
+        this.initializeControls();
     }
 
     initializeView(): void {
@@ -26,7 +27,7 @@ class MainPage {
         this.initializeEditUserPopup();
     };
 
-    initlializeControls(): void {
+    initializeControls(): void {
         var thisObj = this;
         $(`#${thisObj.configuration.ButtonAddUserId}`).click(() => { thisObj.openAddUserPopup() });
         $(`#${thisObj.configuration.ButtonEditUserId}`).click(() => { thisObj.openEditUserPopup() });

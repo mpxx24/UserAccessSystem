@@ -19,5 +19,8 @@ namespace UserAccessSystem.Controllers {
         public ActionResult ApiTests() {
             return this.View();
         }
+        public ActionResult Territory() {
+            return this.View();
+        }
     }
 }

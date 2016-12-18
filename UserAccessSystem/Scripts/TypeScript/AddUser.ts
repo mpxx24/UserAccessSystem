@@ -1,4 +1,5 @@
-﻿declare var $: any;
+﻿import Interface = require("./IInterface");
+declare var $: any;
 declare var ControlsHelper: any;
 
 interface IAddUserConfiguration {
@@ -11,19 +12,19 @@ interface IAddUserConfiguration {
     UserGridId: string;
 }
 
-class AddUser {
+class AddUser implements Interface.IInterface{
     configuration: IAddUserConfiguration;
 
     constructor(configuration: IAddUserConfiguration) {
         this.configuration = configuration;
         this.initializeView();
-        this.initlializeControls();
+        this.initializeControls();
     }
 
     initializeView(): void {
     };
 
-    initlializeControls(): void {
+    initializeControls(): void {
         var thisObj = this;
 
         ControlsHelper.CreateDatePicker(thisObj.configuration.DateOfBirthDatePickerId);

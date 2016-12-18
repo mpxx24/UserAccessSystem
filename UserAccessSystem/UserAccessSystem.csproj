@@ -159,11 +159,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TerritoriesController.cs" />
+    <Compile Include="Controllers\TerritoryController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AppModels\CustomControlsModels\TerritoriesGridModel.cs" />
+    <Compile Include="Models\AppModels\TerritoryViewModel.cs" />
+    <Compile Include="Models\Converters\TerritoryModelConverter.cs" />
     <Compile Include="Models\Converters\UserModelConverter.cs" />
     <Compile Include="Models\AppModels\CustomControlsModels\UserGridModel.cs" />
     <Compile Include="Models\AppModels\UserApiModel.cs" />
@@ -229,6 +234,7 @@
     <Content Include="Scripts\TypeScript\tsconfig.json" />
     <None Include="Views\Home\AddUserPopup.cshtml" />
     <Content Include="Views\Home\ApiTests.cshtml" />
+    <None Include="Views\Territory\Index.cshtml" />
     <None Include="Views\User\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -247,9 +253,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\TypeScript\IInterface.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\AddUser.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\EditUser.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\MainPage.ts" />
+    <TypeScriptCompile Include="Scripts\TypeScript\Territory.ts" />
     <TypeScriptCompile Include="Scripts\typings\jqueryui\jqueryui.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>

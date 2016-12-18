@@ -16,7 +16,8 @@ namespace UserAccessSystem.Services.Installers {
 
             container.Register(
                 Component.For<IRepository>().ImplementedBy<Repository.Repository>(),
-                Component.For<IUserService>().ImplementedBy<UserService>()
+                Component.For<IUserService>().ImplementedBy<UserService>(),
+                Component.For<ITerritoryService>().ImplementedBy<TerritoryService>()
                 );
         }
     }

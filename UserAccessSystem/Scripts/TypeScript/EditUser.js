@@ -1,13 +1,14 @@
+"use strict";
 var EditUser = (function () {
     function EditUser(configuration) {
         this.configuration = configuration;
         this.initializeView();
-        this.initlializeControls();
+        this.initializeControls();
     }
     EditUser.prototype.initializeView = function () {
     };
     ;
-    EditUser.prototype.initlializeControls = function () {
+    EditUser.prototype.initializeControls = function () {
         var thisObj = this;
         ControlsHelper.CreateDatePicker(thisObj.configuration.LastSubscriptionDatePickerId);
         $("#" + thisObj.configuration.ButtonSaveEditedUserIs).click(function () { thisObj.updateUser(); });

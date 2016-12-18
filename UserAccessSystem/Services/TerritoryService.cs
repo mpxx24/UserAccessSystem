@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using UserAccessSystem.DatabaseAccess.Models;
+using UserAccessSystem.Models.AppModels;
+using UserAccessSystem.Models.Converters;
 using UserAccessSystem.Repository;
 using UserAccessSystem.Services.Exceptions;
 using UserAccessSystem.Services.Interfaces;
@@ -67,6 +69,21 @@ namespace UserAccessSystem.Services {
             }
             catch (Exception ex) {
                 throw new GeneralServiceMethodException($"Failed to add territory! - {nameof(this.AddTerritory)}", ex.InnerException);
+            }
+        }
+
+        /// <summary>
+        /// Gets the territories view models.
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="GeneralServiceMethodException">$Failed to retrieve territory view models! - {nameof(this.GetTerritoriesViewModels)}</exception>
+        public IEnumerable<TerritoryViewModel> GetTerritoriesViewModels() {
+            var territories = this.GetAllTerritories();
+            try {
+                return TerritoryModelConverter.ConvertTerritoriesToViewModels(territories);
+            }
+            catch (Exception ex) {
+                throw new GeneralServiceMethodException($"Failed to retrieve territory view models! - {nameof(this.GetTerritoriesViewModels)}", ex.InnerException);
             }
         }
 

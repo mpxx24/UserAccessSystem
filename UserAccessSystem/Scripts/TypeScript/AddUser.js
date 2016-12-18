@@ -1,13 +1,14 @@
+"use strict";
 var AddUser = (function () {
     function AddUser(configuration) {
         this.configuration = configuration;
         this.initializeView();
-        this.initlializeControls();
+        this.initializeControls();
     }
     AddUser.prototype.initializeView = function () {
     };
     ;
-    AddUser.prototype.initlializeControls = function () {
+    AddUser.prototype.initializeControls = function () {
         var thisObj = this;
         ControlsHelper.CreateDatePicker(thisObj.configuration.DateOfBirthDatePickerId);
         ControlsHelper.CreateDatePicker(thisObj.configuration.LastSubscriptionDatePickerId);
