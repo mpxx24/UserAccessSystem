@@ -57,7 +57,7 @@ namespace UserAccessSystem.Services {
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         public UserApiModel GetUserApiModel(int id) {
-            if (!this.DoesUserWithSpecifiedIdExist(id)) {
+            if (!this.IsUserWithSpecifiedIdExist(id)) {
                 throw new ObjectNotFoundException("User with specified ID not found!");
             }
 
@@ -96,7 +96,7 @@ namespace UserAccessSystem.Services {
         /// </exception>
         /// <exception cref="GeneralServiceMethodException">$Failed to add user! - {nameof(SaveUser)}</exception>
         public int SaveUser(User user) {
-            if (this.DoesUserWithSpecifiedIdExist(user.Id)) {
+            if (this.IsUserWithSpecifiedIdExist(user.Id)) {
                 throw new FailedToAddObjectToDatabaseException("User with specified ID already exists!");
             }
             if (string.IsNullOrEmpty(user.FirstName)) {
@@ -136,7 +136,7 @@ namespace UserAccessSystem.Services {
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public bool DoesUserWithSpecifiedIdExist(int id) {
+        public bool IsUserWithSpecifiedIdExist(int id) {
             return this.repository.GetAll<User>().Any(x => x.Id == id);
         }
 
@@ -147,7 +147,7 @@ namespace UserAccessSystem.Services {
         /// <returns></returns>
         /// <exception cref="System.Data.Entity.Core.ObjectNotFoundException">User with specified ID not found!</exception>
         public UserViewModel GetUserViewModel(int id) {
-            if (!this.DoesUserWithSpecifiedIdExist(id)) {
+            if (!this.IsUserWithSpecifiedIdExist(id)) {
                 throw new ObjectNotFoundException("User with specified ID not found!");
             }
 

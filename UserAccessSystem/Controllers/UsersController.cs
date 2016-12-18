@@ -11,11 +11,19 @@ namespace UserAccessSystem.Controllers {
             this.userService = userService;
         }
 
-        // GET api/users
+        /// <summary>
+        ///    Gets all users as Web API models
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<UserApiModel> Get() {
             return this.userService.GetWebApiUserModels();
         }
 
+        /// <summary>
+        ///     Gets specified (with id) user Web API model
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public UserApiModel Get(int id) {
             return this.userService.GetUserApiModel(id);
         }

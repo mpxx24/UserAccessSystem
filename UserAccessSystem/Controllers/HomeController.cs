@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using Newtonsoft.Json;
-using UserAccessSystem.Models.Converters;
+﻿using System.Web.Mvc;
 using UserAccessSystem.Services.Interfaces;
 
 namespace UserAccessSystem.Controllers {
@@ -21,18 +18,6 @@ namespace UserAccessSystem.Controllers {
 
         public ActionResult ApiTests() {
             return this.View();
-        }
-
-        /// <summary>
-        ///     Gets all users.
-        /// </summary>
-        /// <returns>
-        ///     returns JSON string of all users for grid usage>
-        /// </returns>
-        public string GetAllUsers() {
-            var users = this.userService.GetUserViewModels();
-            var usersSorted = users.OrderBy(x => x.Id);
-            return JsonConvert.SerializeObject(UserModelConverter.ConvertUsersListToGridModel(usersSorted));
         }
     }
 }

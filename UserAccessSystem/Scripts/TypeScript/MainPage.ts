@@ -89,7 +89,7 @@ class MainPage {
                     id: "x8gt2424-1ht7-4jh5-8123-78duqklqugej"
                 };
             },
-            url: "Home/GetAllUsers",
+            url: "User/GetAllUsers",
             selection: true,
             multiSelect: true,
             rowSelect: false,

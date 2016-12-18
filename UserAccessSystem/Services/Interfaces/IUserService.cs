@@ -12,7 +12,7 @@ namespace UserAccessSystem.Services.Interfaces {
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        bool DoesUserWithSpecifiedIdExist(int id);
+        bool IsUserWithSpecifiedIdExist(int id);
 
         /// <summary>
         ///     Gets the user.

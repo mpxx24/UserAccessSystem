@@ -1,17 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using UserAccessSystem.DatabaseAccess.Models;
 
 namespace UserAccessSystem.DatabaseAccess.Migrations {
     internal sealed class Configuration : DbMigrationsConfiguration<AppContext> {
         public Configuration() {
-            AutomaticMigrationsEnabled = true;
+            this.AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(AppContext context) {
             //  This method will be called after migrating to the latest version.
-
-            context.Users.AddOrUpdate(new User
+            var mp = new User
             {
                 Id = 1,
                 FirstName = "Mariusz",
@@ -21,8 +21,8 @@ namespace UserAccessSystem.DatabaseAccess.Migrations {
                 IsActiveAccount = true,
                 IsSuperUser = true,
                 LastSubscription = DateTime.Today
-            });
-            context.Users.AddOrUpdate(new User
+            };
+            var hh = new User
             {
                 Id = 2,
                 FirstName = "Harry",
@@ -32,8 +32,8 @@ namespace UserAccessSystem.DatabaseAccess.Migrations {
                 IsActiveAccount = true,
                 IsSuperUser = false,
                 LastSubscription = DateTime.Today.AddDays(-14)
-            });
-            context.Users.AddOrUpdate(new User
+            };
+            var sh = new User
             {
                 Id = 3,
                 FirstName = "Scot",
@@ -42,7 +42,23 @@ namespace UserAccessSystem.DatabaseAccess.Migrations {
                 IsActiveAccount = false,
                 IsSuperUser = false,
                 LastSubscription = DateTime.Today.AddYears(-2).AddDays(-46)
-            });
+            };
+
+            var ctn = new Territory
+            {
+                Id = 1,
+                Name = "Canteen",
+                ShortName = "CNT",
+                IsAvailableForAll = true,
+                IsRequireSpecialUserAccessRights = false,
+                Users = new List<User> { mp, hh, sh }
+            };
+
+            context.Users.AddOrUpdate(mp);
+            context.Users.AddOrUpdate(hh);
+            context.Users.AddOrUpdate(sh);
+
+            context.Territories.AddOrUpdate(ctn);
         }
     }
 }

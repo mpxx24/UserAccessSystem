@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace UserAccessSystem.DatabaseAccess.Models {
@@ -21,5 +22,7 @@ namespace UserAccessSystem.DatabaseAccess.Models {
         public bool IsActiveAccount { get; set; }
         [Required]
         public bool IsSuperUser { get; set; }
+
+        public virtual ICollection<Territory> Territories { get; set; } = new List<Territory>();
     }
 }

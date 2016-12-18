@@ -51,7 +51,7 @@ class EditUser {
             data: { p: JSON.stringify(input) },
             complete() {
                 $(`#${thisObj.configuration.PopupEditUserId}`).dialog().dialog("close");
-                $(`#${thisObj.configuration.UserGridId}`).bootgrid("reload");
+                //$(`#${thisObj.configuration.UserGridId}`).bootgrid("reload");
             },
             error(error) {
                 alert("Failed to edit user!");

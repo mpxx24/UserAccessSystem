@@ -174,7 +174,9 @@
     <Compile Include="Services\Exceptions\FailedToAddObjectToDatabaseException.cs" />
     <Compile Include="Services\Exceptions\GeneralServiceMethodException.cs" />
     <Compile Include="Services\Installers\WindsorInstaller.cs" />
+    <Compile Include="Services\Interfaces\ITerritoryService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\TerritoryService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\Windsor\WindsorDependencyResolver.cs" />
     <Compile Include="Services\Windsor\WindsorDependencyScope.cs" />

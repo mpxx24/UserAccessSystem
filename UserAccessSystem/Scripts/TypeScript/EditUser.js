@@ -30,7 +30,7 @@ var EditUser = (function () {
             data: { p: JSON.stringify(input) },
             complete: function () {
                 $("#" + thisObj.configuration.PopupEditUserId).dialog().dialog("close");
-                $("#" + thisObj.configuration.UserGridId).bootgrid("reload");
+                //$(`#${thisObj.configuration.UserGridId}`).bootgrid("reload");
             },
             error: function (error) {
                 alert("Failed to edit user!");
