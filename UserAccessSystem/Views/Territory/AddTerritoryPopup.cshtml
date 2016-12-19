@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model UserAccessSystem.Controllers.DropdownListViewModel
 
 @{
     ViewBag.Title = "Add Territory";
@@ -10,11 +10,15 @@
 <div class="addTerritoryFields">
     <div>
         @Html.Label("lbAddTerritory_Name", "Name")
-        @Html.TextBox("tbAddTerritory_Name", "", new {@class = "form-control", style = "width: 100%;"})
+        @Html.TextBox("tbAddTerritory_Name", "", new { @class = "form-control", style = "width: 100%;" })
     </div>
     <div>
         @Html.Label("lbAddTerritory_ShortName", "Short name")
-        @Html.TextBox("tbAddTerritory_ShortName", "", new {@class = "form-control"})
+        @Html.TextBox("tbAddTerritory_ShortName", "", new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.Label("lbAddTerritory_Users", "Users")
+        @Html.ListBoxFor(x => x.Ids, new MultiSelectList(@Model.Users, "Value", "Text"), new {size = 4, @class = "form-control"})
     </div>
     <div>
         <button id="btnAddTerritory_Add" type="button" class="btn btn-primary" style="float: right" data-request-address="@Url.Action("SaveTerritory", "Territory")">Add</button>

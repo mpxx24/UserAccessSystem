@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using UserAccessSystem.DatabaseAccess.Models;
@@ -8,8 +9,11 @@ using UserAccessSystem.Services.Interfaces;
 namespace UserAccessSystem.Controllers {
     public class TerritoryController : Controller {
         private readonly ITerritoryService territoryService;
-        public TerritoryController(ITerritoryService territoryService) {
+        private readonly IUserService userService;
+
+        public TerritoryController(ITerritoryService territoryService, IUserService userService) {
             this.territoryService = territoryService;
+            this.userService = userService;
         }
 
         /// <summary>
@@ -35,7 +39,13 @@ namespace UserAccessSystem.Controllers {
         /// </summary>
         /// <returns></returns>
         public ActionResult AddTerritoryPopup() {
-            return this.View();
+            var users = this.userService.GetUserViewModels();
+            var model = new DropdownListViewModel
+            {
+                Users = new MultiSelectList(users.ToList(), "Id", "FullName")
+            };
+
+            return this.View(model);
         }
 
         /// <summary>
@@ -61,5 +71,10 @@ namespace UserAccessSystem.Controllers {
                 IsRequireSpecialUserAccessRights = false
             };
         }
+    }
+
+    public class DropdownListViewModel {
+        public int[] Ids { get; set; }
+        public MultiSelectList Users { get; set; }
     }
 }

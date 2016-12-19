@@ -27,6 +27,14 @@ namespace UserAccessSystem.Models.AppModels {
         public string LastName { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [full name].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [full name]; otherwise, <c>false</c>.
+        /// </value>
+        public string FullName => $"{this.FirstName} {this.LastName}";
+
+        /// <summary>
         ///     Gets or sets the last subscription.
         /// </summary>
         /// <value>
