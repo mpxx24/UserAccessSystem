@@ -18,6 +18,7 @@
     <script src="~/Scripts/TypeScript/AddUser.js"></script>
     <script src="~/Scripts/TypeScript/Territory.js"></script>
     <script src="~/Scripts/TypeScript/AddTerritory.js"></script>
+    <script src="~/Scripts/TypeScript/AssignUsersToTerritories.js"></script>
 
     <link rel="stylesheet" href="../../Content/jquery-ui.css"/>
 </head>
@@ -35,6 +36,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Territories", "Index", "Territory", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Assign users to Territories", "AssignUsersToTerritories", "Territory", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "ApiTests", "Home", new { area = "" }, null)</li>
                 </ul>
             </div>

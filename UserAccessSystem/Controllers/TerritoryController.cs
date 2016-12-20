@@ -3,6 +3,8 @@ using System.Linq;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using UserAccessSystem.DatabaseAccess.Models;
+using UserAccessSystem.Models.AppModels;
+using UserAccessSystem.Models.AppModels.CustomControlsModels;
 using UserAccessSystem.Models.Converters;
 using UserAccessSystem.Services.Interfaces;
 
@@ -39,13 +41,7 @@ namespace UserAccessSystem.Controllers {
         /// </summary>
         /// <returns></returns>
         public ActionResult AddTerritoryPopup() {
-            var users = this.userService.GetUserViewModels();
-            var model = new DropdownListViewModel
-            {
-                Users = new MultiSelectList(users.ToList(), "Id", "FullName")
-            };
-
-            return this.View(model);
+            return this.View();
         }
 
         /// <summary>
@@ -71,10 +67,39 @@ namespace UserAccessSystem.Controllers {
                 IsRequireSpecialUserAccessRights = false
             };
         }
-    }
 
-    public class DropdownListViewModel {
-        public int[] Ids { get; set; }
-        public MultiSelectList Users { get; set; }
+        /// <summary>
+        /// Assigns the users.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        public void AssignUsers(string p) {
+
+        }
+
+        /// <summary>
+        /// Assigns the user to territories view
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult AssignUsersToTerritories() {
+            var users = this.userService.GetUserViewModels();
+            var territories = this.territoryService.GetAllTerritories();
+            var usersModel = new DropdownListViewModel
+            {
+                Enumerable = new MultiSelectList(users.ToList(), "Id", "FullName")
+            };
+
+            var territoriesModel = new DropdownListViewModel
+            {
+                Enumerable = new MultiSelectList(territories.ToList(), "Id", "Name")
+            };
+
+            var assignModel = new AssignUserToTerritoryModel
+            {
+                Users = usersModel,
+                Territories = territoriesModel
+            };
+
+            return this.View(assignModel);
+        }
     }
 }

@@ -1,0 +1,34 @@
+﻿@model UserAccessSystem.Models.AppModels.AssignUserToTerritoryModel
+@{
+    ViewBag.Title = "Assign users to territory";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="assignUsersToTerritoryFields">
+    <div>
+        @Html.Label("lbAssignUsers_Territories", "Territories")
+        @Html.DropDownListFor(x => x.Territories.Ids, new SelectList(Model.Territories.Enumerable, "Value", "Text"), new {id="ddAssignUsers_Territories", size = Model.Territories.Enumerable.Count(), @class = "form-control"})
+    </div>
+    <div>
+        @Html.Label("lbAssignUsers_Users", "Users")
+        @Html.ListBoxFor(x => x.Users.Ids, new MultiSelectList(Model.Users.Enumerable, "Value", "Text"), new {id= "ddAssignUsers_Users", size = Model.Users.Enumerable.Count(), @class = "form-control"})
+    </div>
+    <div>
+        <button id="btnAssignUsers_Assign" type="button" class="btn btn-primary" style="float: right" data-request-address="@Url.Action("AssignUsers", "Territory")">Assign</button>
+    </div>
+</div>
+
+@* ReSharper disable once ConstructorCallNotUsed *@
+<script type="text/javascript">
+    $(document).ready(function() {
+        var config = {
+            TerritoriesDropdownId: "ddAssignUsers_Territories",
+            UsersListBoxId: "ddAssignUsers_Users",
+            AssignButtonId: "btnAssignUsers_Assign"
+        }
+
+        new AssignUsersToTerritories(config);
+    });
+</script>

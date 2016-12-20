@@ -166,6 +166,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AppModels\AssignUserToTerritoryModel.cs" />
+    <Compile Include="Models\AppModels\CustomControlsModels\DropDownListViewModel.cs" />
     <Compile Include="Models\AppModels\CustomControlsModels\TerritoriesGridModel.cs" />
     <Compile Include="Models\AppModels\TerritoryViewModel.cs" />
     <Compile Include="Models\Converters\TerritoryModelConverter.cs" />
@@ -235,6 +237,7 @@
     <None Include="Views\Home\AddUserPopup.cshtml" />
     <Content Include="Views\Home\ApiTests.cshtml" />
     <None Include="Views\Territory\AddTerritoryPopup.cshtml" />
+    <None Include="Views\Territory\AssignUsersToTerritories.cshtml" />
     <None Include="Views\Territory\Index.cshtml" />
     <None Include="Views\User\EditUser.cshtml" />
   </ItemGroup>
@@ -255,6 +258,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\TypeScript\AddTerritory.ts" />
+    <TypeScriptCompile Include="Scripts\TypeScript\AssignUsersToTerritories.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\IInterface.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\AddUser.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\EditUser.ts" />
