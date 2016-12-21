@@ -5,7 +5,8 @@ var ApiTests = (function () {
         this.initializeView();
         this.initializeControls();
     }
-    ApiTests.prototype.initializeView = function () { };
+    ApiTests.prototype.initializeView = function () {
+    };
     ApiTests.prototype.initializeControls = function () {
         var thisObj = this;
         ;
@@ -16,37 +17,30 @@ var ApiTests = (function () {
     };
     ;
     ApiTests.prototype.getAllUsersResponse = function () {
-        var configAllUsers = {
-            Address: "http://localhost:55529/api/users"
-        };
-        DataFactory.GetWebApiResponseInTextArea(configAllUsers);
+        this.getListResponse("http://localhost:55529/api/users");
     };
     ;
     ApiTests.prototype.getUserWithIdResponse = function () {
-        var userId = $("#" + this.configuration.UserIdTextboxId).val();
-        if (!userId) {
-            alert("Need to enter the ID of user!");
-        }
-        if (isNaN(userId)) {
-            alert("Value entered must be a number!");
-        }
-        else {
-            var configUserWithId = {
-                Address: "http://localhost:55529/api/users/" + userId
-            };
-            DataFactory.GetWebApiResponseInTextArea(configUserWithId);
-        }
+        this.getSingleItemResponse(this.configuration.UserIdTextboxId, "http://localhost:55529/api/users");
     };
     ;
     ApiTests.prototype.getAllTerritoriesResponse = function () {
-        var configAllTerritories = {
-            Address: "http://localhost:55529/api/territories"
-        };
-        DataFactory.GetWebApiResponseInTextArea(configAllTerritories);
+        this.getListResponse("http://localhost:55529/api/territories");
     };
     ;
     ApiTests.prototype.getTerritoryWithIdResponse = function () {
-        var territoryId = $("#" + this.configuration.TerritoryIdTextboxId).val();
+        this.getSingleItemResponse(this.configuration.TerritoryIdTextboxId, "http://localhost:55529/api/territories");
+    };
+    ;
+    ApiTests.prototype.getListResponse = function (address) {
+        var configAllItems = {
+            Address: address
+        };
+        DataFactory.GetWebApiResponseInTextArea(configAllItems);
+    };
+    ;
+    ApiTests.prototype.getSingleItemResponse = function (controlId, address) {
+        var territoryId = $("#" + controlId).val();
         if (!territoryId) {
             alert("Need to enter the ID of user!");
         }
@@ -55,7 +49,7 @@ var ApiTests = (function () {
         }
         else {
             var configTerritoryWithId = {
-                Address: "http://localhost:55529/api/territories/" + territoryId
+                Address: address + "/" + territoryId
             };
             DataFactory.GetWebApiResponseInTextArea(configTerritoryWithId);
         }
