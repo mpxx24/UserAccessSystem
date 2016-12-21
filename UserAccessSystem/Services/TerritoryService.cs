@@ -24,6 +24,16 @@ namespace UserAccessSystem.Services {
         }
 
         /// <summary>
+        /// Gets the territory API model.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public TerritoryApiModel GetTerritoryApiModel(int id) {
+            var territory = this.repository.GetFirst<Territory>(x => x.Id == id);
+            return TerritoryModelConverter.ConvertTerritoryToApiModel(territory);
+        }
+
+        /// <summary>
         ///     Gets all territories.
         /// </summary>
         /// <returns></returns>
@@ -98,6 +108,15 @@ namespace UserAccessSystem.Services {
             catch (Exception ex) {
                 throw new GeneralServiceMethodException($"Failed to retrieve territory view models! - {nameof(this.GetTerritoriesViewModels)}", ex.InnerException);
             }
+        }
+
+        /// <summary>
+        /// Gets the territory API models.
+        /// </summary>
+        /// <param name="territories">The territories.</param>
+        /// <returns></returns>
+        public IEnumerable<TerritoryApiModel> GetTerritoryApiModels(IEnumerable<Territory> territories) {
+            return TerritoryModelConverter.ConvertTerritoriesToApiModels(territories);
         }
 
         private bool IsTerritoryWithSpecifiedIdExist(int id) {

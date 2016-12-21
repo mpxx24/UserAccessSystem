@@ -170,6 +170,7 @@
     <Compile Include="Models\AppModels\AssignUserToTerritoryModel.cs" />
     <Compile Include="Models\AppModels\CustomControlsModels\DropDownListViewModel.cs" />
     <Compile Include="Models\AppModels\CustomControlsModels\TerritoriesGridModel.cs" />
+    <Compile Include="Models\AppModels\TerritoryApiModel.cs" />
     <Compile Include="Models\AppModels\TerritoryViewModel.cs" />
     <Compile Include="Models\Converters\TerritoryModelConverter.cs" />
     <Compile Include="Models\Converters\UserModelConverter.cs" />

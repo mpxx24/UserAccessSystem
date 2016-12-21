@@ -32,6 +32,13 @@ namespace UserAccessSystem.Services.Interfaces {
         void UpdateTerritory(Territory territory);
 
         /// <summary>
+        /// Gets the territory API model.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        TerritoryApiModel GetTerritoryApiModel(int id);
+
+        /// <summary>
         ///     Gets all territories.
         /// </summary>
         /// <returns></returns>
@@ -42,5 +49,12 @@ namespace UserAccessSystem.Services.Interfaces {
         /// </summary>
         /// <returns></returns>
         IEnumerable<TerritoryViewModel> GetTerritoriesViewModels();
+
+        /// <summary>
+        /// Gets the territory API models.
+        /// </summary>
+        /// <param name="territories">The territories.</param>
+        /// <returns></returns>
+        IEnumerable<TerritoryApiModel> GetTerritoryApiModels(IEnumerable<Territory> territories);
     }
 }

@@ -16,7 +16,7 @@ namespace UserAccessSystem.Models.Converters {
         }
 
         /// <summary>
-        /// Converts the territories list to grid model.
+        ///     Converts the territories list to grid model.
         /// </summary>
         /// <param name="territories">The territories.</param>
         /// <returns></returns>
@@ -29,6 +29,28 @@ namespace UserAccessSystem.Models.Converters {
                 Total = territoriesViewModel.Count(),
                 Current = 1
             };
+        }
+
+        /// <summary>
+        ///     Converts the territory to API model.
+        /// </summary>
+        /// <param name="territory">The territory.</param>
+        /// <returns></returns>
+        public static TerritoryApiModel ConvertTerritoryToApiModel(Territory territory) {
+            return new TerritoryApiModel
+            {
+                Name = territory.Name,
+                ShortName = territory.ShortName
+            };
+        }
+
+        /// <summary>
+        ///     Converts the territories to API models.
+        /// </summary>
+        /// <param name="territories">The territories.</param>
+        /// <returns></returns>
+        public static List<TerritoryApiModel> ConvertTerritoriesToApiModels(IEnumerable<Territory> territories) {
+            return territories.Select(ConvertTerritoryToApiModel).ToList();
         }
 
         private static TerritoryViewModel ConvertTerritoryToViewModel(Territory territory) {
