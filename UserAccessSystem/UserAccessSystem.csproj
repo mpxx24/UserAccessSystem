@@ -259,6 +259,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Scripts\TypeScript\ApiTests.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\AddTerritory.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\AssignUsersToTerritories.ts" />
     <TypeScriptCompile Include="Scripts\TypeScript\IInterface.ts" />

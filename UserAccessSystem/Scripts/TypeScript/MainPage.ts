@@ -62,7 +62,6 @@ class MainPage implements Interface.IInterface{
             modal: true
         };
         $(`#${this.configuration.EditUserPopup}`).dialog(this.configEditUserPopup);
-        console.log("init edit popup");
     };
 
     openEditUserPopup(): void {

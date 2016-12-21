@@ -17,6 +17,13 @@
                 <a id="aApiTests_GetUserWithId" href="#">Get user with ID</a>
                 @Html.TextBox("tbApiTests_UserId", "", new { @class = "form-control", @style = "width:20%; display: inline-block; margin-left: 10px;" })
             </div>
+            <div>
+                <a id="aApiTests_GetAllTerritories" href="#">Get all territories</a>
+            </div>
+            <div>
+                <a id="aApiTests_GetTerritoryWithId" href="#">Get territory with ID</a>
+                @Html.TextBox("tbApiTests_TerritoryId", "", new { @class = "form-control", @style = "width:20%; display: inline-block; margin-left: 10px;" })
+            </div>
         </div>
         <div class="col-md-9">
             @Html.Label("lbApiTests_ApiResponse", "Web API response")
@@ -25,27 +32,18 @@
     </div>
 </div>
 
+@* ReSharper disable once ConstructorCallNotUsed *@
 <script type="text/javascript">
-    $("#aApiTests_GetAllUsers").click(function () {
-        var configAllUsers = {
-            Address: "http://localhost:55529/api/users"
-        };
-        DataFactory.GetWebApiResponseInTextArea(configAllUsers);
-    });
-
-    $("#aApiTests_GetUserWithId").click(function () {
-        var userId = $("#tbApiTests_UserId").val();
-
-        if (!userId) {
-            alert("Need to enter the ID of user!");
+    $(document).ready(function () {
+        var config = {
+            GetAllUsersLinkId: "aApiTests_GetAllUsers",
+            GetUserWithIdLinkId: "aApiTests_GetUserWithId",
+            UserIdTextboxId: "tbApiTests_UserId",
+            GetAllTerritoriesLinkId: "aApiTests_GetAllTerritories",
+            GetTerritoryWithIdLinkId: "aApiTests_GetTerritoryWithId",
+            TerritoryIdTextboxId: "tbApiTests_TerritoryId"
         }
-        if (isNaN(userId)) {
-            alert("Value entered must be a number!");
-        } else {
-            var configUserWithId = {
-                Address: "http://localhost:55529/api/users/" + userId
-            };
-            DataFactory.GetWebApiResponseInTextArea(configUserWithId);
-        }
+
+        new ApiTests(config);
     });
 </script>

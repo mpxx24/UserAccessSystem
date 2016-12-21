@@ -46,7 +46,6 @@ var MainPage = (function () {
             modal: true
         };
         $("#" + this.configuration.EditUserPopup).dialog(this.configEditUserPopup);
-        console.log("init edit popup");
     };
     ;
     MainPage.prototype.openEditUserPopup = function () {
