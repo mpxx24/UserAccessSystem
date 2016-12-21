@@ -6,12 +6,14 @@ using UserAccessSystem.DatabaseAccess.Models;
 using UserAccessSystem.Models.AppModels;
 using UserAccessSystem.Models.AppModels.CustomControlsModels;
 using UserAccessSystem.Models.Converters;
+using UserAccessSystem.Repository;
 using UserAccessSystem.Services.Interfaces;
 
 namespace UserAccessSystem.Controllers {
     public class TerritoryController : Controller {
         private readonly ITerritoryService territoryService;
         private readonly IUserService userService;
+        private readonly IRepository repository;
 
         public TerritoryController(ITerritoryService territoryService, IUserService userService) {
             this.territoryService = territoryService;
@@ -73,7 +75,15 @@ namespace UserAccessSystem.Controllers {
         /// </summary>
         /// <param name="p">The p.</param>
         public void AssignUsers(string p) {
+            var data = JsonConvert.DeserializeObject<AssignUsersModel>(p);
+            var territory = this.territoryService.GetTerritory(data.TerritoryId);
+            var users = this.userService.GetAllUsers().ToList();
 
+            foreach (var userId in data.UserIds) {
+                territory.Users.Add(users.First(x => x.Id == userId));
+            }
+
+            this.territoryService.UpdateTerritory(territory);
         }
 
         /// <summary>

@@ -26,8 +26,32 @@ class AssignUsersToTerritories implements Interface.IInterface {
     };
 
     assignUsers(): void {
+        var thisObj = this;
+        var addUserUrl = $(`#${thisObj.configuration.AssignButtonId}`).data("request-address");
+
         var valueTerritory = $(`select#${this.configuration.TerritoriesDropdownId}`).val();
         var valuesUsers = $(`select#${this.configuration.UsersListBoxId}`).val();
-        console.log(valueTerritory, valuesUsers);
+
+        var input = {
+            TerritoryId: valueTerritory,
+            UserIds: valuesUsers
+        }
+
+        $.ajax({
+            url: addUserUrl,
+            type: "POST",
+            dataType: "text",
+            conventType: "application/json; charset=utf-8",
+            data: { p: JSON.stringify(input) },
+            success: () => {
+                alert("Updated territory!");
+            },
+            complete(data) {
+                console.log(data);
+            },
+            error(error) {
+                alert("Failed to add assign users to territory!");
+            }
+        });
     };
 }

@@ -26,6 +26,12 @@ namespace UserAccessSystem.Services.Interfaces {
         int AddTerritory(Territory territory);
 
         /// <summary>
+        /// Updates the territory.
+        /// </summary>
+        /// <param name="territory">The territory.</param>
+        void UpdateTerritory(Territory territory);
+
+        /// <summary>
         ///     Gets all territories.
         /// </summary>
         /// <returns></returns>

@@ -73,6 +73,19 @@ namespace UserAccessSystem.Services {
         }
 
         /// <summary>
+        /// Updates the territory.
+        /// </summary>
+        /// <param name="territory">The territory.</param>
+        public void UpdateTerritory(Territory territory) {
+            try {
+                this.repository.Edit(territory);
+            }
+            catch (Exception ex) {
+                throw new GeneralServiceMethodException($"Failed to update territory! - {nameof(this.UpdateTerritory)}", ex.InnerException);
+            }
+        }
+
+        /// <summary>
         /// Gets the territories view models.
         /// </summary>
         /// <returns></returns>
