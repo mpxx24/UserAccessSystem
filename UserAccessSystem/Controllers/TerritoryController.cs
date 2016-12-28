@@ -80,7 +80,13 @@ namespace UserAccessSystem.Controllers {
             var users = this.userService.GetAllUsers().ToList();
 
             foreach (var userId in data.UserIds) {
-                territory.Users.Add(users.First(x => x.Id == userId));
+                if (territory.IsAvailableForAll) {
+                    territory.Users.Add(users.First(x => x.Id == userId));
+                } else if (territory.IsRequireSpecialUserAccessRights) {
+                    if (users.First(x => x.Id == userId).IsSuperUser) {
+                        territory.Users.Add(users.First(x => x.Id == userId));
+                    }
+                }
             }
 
             this.territoryService.UpdateTerritory(territory);
