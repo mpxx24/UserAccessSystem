@@ -96,7 +96,7 @@ namespace UserAccessSystem.Controllers {
                 LastSubscription = userData.LastSubscription,
                 IsSuperUser = userData.IsSuperUser,
                 DateOfBirth = userData.DateOfBirth,
-                IsActiveAccount = userData.LastSubscription >= DateTime.Today.AddDays(-28)
+                IsActiveAccount = userData.IsSuperUser || userData.LastSubscription >= DateTime.Today.AddDays(-28)
             };
             return user;
         }
