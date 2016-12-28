@@ -30,7 +30,9 @@ namespace UserAccessSystem.Services {
         /// <param name="userId">The user identifier.</param>
         public void DeleteUser(int userId) {
             var user = this.GetUser(userId);
-            this.repository.Remove(user);
+            if (!user.IsSuperUser) {
+                this.repository.Remove(user);
+            }
         }
         /// <summary>
         ///     Gets all users.
