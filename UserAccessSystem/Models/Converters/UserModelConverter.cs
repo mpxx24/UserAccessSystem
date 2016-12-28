@@ -79,5 +79,17 @@ namespace UserAccessSystem.Models.Converters {
                 LastSubscription = user.LastSubscription
             };
         }
+
+        /// <summary>
+        /// Converts the single user to API model.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        public static SingleUserApiModel ConvertSingleUserToApiModel(User user) {
+            return new SingleUserApiModel
+            {
+                IsHasAccess = user.IsActiveAccount
+            };
+        }
     }
 }

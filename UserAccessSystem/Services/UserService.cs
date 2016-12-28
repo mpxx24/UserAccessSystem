@@ -54,17 +54,18 @@ namespace UserAccessSystem.Services {
         }
 
         /// <summary>
-        ///     Gets the user API model.
+        /// Gets the user API model.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public UserApiModel GetUserApiModel(int id) {
+        /// <exception cref="System.Data.Entity.Core.ObjectNotFoundException">User with specified ID not found!</exception>
+        public SingleUserApiModel GetUserApiModel(int id) {
             if (!this.IsUserWithSpecifiedIdExist(id)) {
                 throw new ObjectNotFoundException("User with specified ID not found!");
             }
 
             var user = this.repository.GetFirst<User>(x => x.Id == id);
-            return UserModelConverter.ConvertUserToApiModel(user);
+            return UserModelConverter.ConvertSingleUserToApiModel(user);
         }
 
         /// <summary>

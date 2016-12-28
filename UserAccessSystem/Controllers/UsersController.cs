@@ -24,7 +24,7 @@ namespace UserAccessSystem.Controllers {
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public UserApiModel Get(int id) {
+        public SingleUserApiModel Get(int id) {
             return this.userService.GetUserApiModel(id);
         }
     }

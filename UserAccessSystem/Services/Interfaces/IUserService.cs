@@ -15,11 +15,11 @@ namespace UserAccessSystem.Services.Interfaces {
         bool IsUserWithSpecifiedIdExist(int id);
 
         /// <summary>
-        ///     Gets the user.
+        /// Gets the user.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        UserApiModel GetUserApiModel(int id);
+        SingleUserApiModel GetUserApiModel(int id);
 
         /// <summary>
         ///     Gets the user view model.
@@ -43,13 +43,13 @@ namespace UserAccessSystem.Services.Interfaces {
         User GetUser(int id);
 
         /// <summary>
-        /// Updates the user.
+        ///     Updates the user.
         /// </summary>
         /// <param name="user">The user.</param>
         void UpdateUser(User user);
 
         /// <summary>
-        /// Deletes the user.
+        ///     Deletes the user.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
         void DeleteUser(int userId);
