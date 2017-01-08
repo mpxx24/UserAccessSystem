@@ -59,7 +59,7 @@ class ApiTests implements Interface.IInterface {
         var territoryId = $(`#${controlId}`).val();
 
         if (!territoryId) {
-            alert("Need to enter the ID of user!");
+            alert("Need to enter proper ID!");
         }
         if (isNaN(territoryId)) {
             alert("Value entered must be a number!");

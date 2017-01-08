@@ -119,6 +119,7 @@ class MainPage implements Interface.IInterface{
             data: { p: JSON.stringify(selectedRows) },
             complete() {
                 $(`#${thisObj.configuration.UsersGridId}`).bootgrid("reload");
+                selectedRows = [];
             },
             error(error) {
                 alert("Failed to remove user!");

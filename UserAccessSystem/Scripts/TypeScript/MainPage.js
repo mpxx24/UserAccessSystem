@@ -103,6 +103,7 @@ var MainPage = (function () {
             data: { p: JSON.stringify(selectedRows) },
             complete: function () {
                 $("#" + thisObj.configuration.UsersGridId).bootgrid("reload");
+                selectedRows = [];
             },
             error: function (error) {
                 alert("Failed to remove user!");

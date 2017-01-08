@@ -6,7 +6,6 @@ using System.Web.Routing;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
-using UserAccessSystem.Services;
 using UserAccessSystem.Services.Windsor;
 
 namespace UserAccessSystem {

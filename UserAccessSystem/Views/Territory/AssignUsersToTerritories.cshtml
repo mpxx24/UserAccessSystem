@@ -15,8 +15,8 @@
         @Html.Label("lbAssignUsers_Users", "Users")
         @Html.ListBoxFor(x => x.Users.Ids, new MultiSelectList(Model.Users.Enumerable, "Value", "Text"), new {id= "ddAssignUsers_Users", size = Model.Users.Enumerable.Count(), @class = "form-control"})
     </div>
-    <div>
-        <button id="btnAssignUsers_Assign" type="button" class="btn btn-primary" style="float: right" data-request-address="@Url.Action("AssignUsers", "Territory")">Assign</button>
+    <div id="assignUsersToTerritoriesActions" style="display: flex">
+        <button id="btnAssignUsers_Assign" type="button" class="btn btn-primary" style="float: right; margin-top: 5px;" data-request-address="@Url.Action("AssignUsers", "Territory")">Assign</button>
     </div>
 </div>
 

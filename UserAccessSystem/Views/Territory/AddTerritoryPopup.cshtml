@@ -1,12 +1,11 @@
 ﻿
 @{
     ViewBag.Title = "Add Territory";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
 
-<div class="addTerritoryFields">
+<div class="addUserFields">
     <div>
         @Html.Label("lbAddTerritory_Name", "Name")
         @Html.TextBox("tbAddTerritory_Name", "", new { @class = "form-control", style = "width: 100%;" })

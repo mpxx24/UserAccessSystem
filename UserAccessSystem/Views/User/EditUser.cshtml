@@ -2,11 +2,10 @@
 
 @{
     ViewBag.Title = "Edit user";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
-<div class="EditUserFields">
+<div class="addUserFields">
     <div>
         @Html.Label("lbEditUser_Name", "Name")
         @Html.TextBoxFor(x => x.FirstName, new { id = "tbEditUser_Name", @class = "form-control", style = "width: 100%;" })

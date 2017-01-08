@@ -42,7 +42,7 @@ var ApiTests = (function () {
     ApiTests.prototype.getSingleItemResponse = function (controlId, address) {
         var territoryId = $("#" + controlId).val();
         if (!territoryId) {
-            alert("Need to enter the ID of user!");
+            alert("Need to enter proper ID!");
         }
         if (isNaN(territoryId)) {
             alert("Value entered must be a number!");
